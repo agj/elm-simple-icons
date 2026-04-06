@@ -23,6 +23,7 @@
             pkgs.nodejs-slim_24
             pkgs.nushell
             pkgs.pnpm
+            pkgs.prettier
           ];
         };
       }

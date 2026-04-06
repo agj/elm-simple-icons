@@ -7,9 +7,13 @@ build: install
     nu ./scripts/build.nu
 
 # Preview the documentation.
-[group("docs")]
 docs:
     elm-doc-preview --port 8001 --no-browser
+
+# Give standard format to files.
+format:
+    prettier --write *.md
+    elm-format src/** --yes
 
 [private]
 install:
