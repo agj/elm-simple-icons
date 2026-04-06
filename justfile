@@ -2,6 +2,10 @@
 @default:
     just --list --unsorted
 
+# Build the Elm code from the source SVG data.
+build: install
+    nu ./scripts/build.nu
+
 # Preview the documentation.
 [group("docs")]
 docs:
