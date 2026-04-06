@@ -1,10 +1,17 @@
-let iconsDir = "./node_modules/simple-icons/icons"
+let simpleIconsDir = "./node_modules/simple-icons"
+let iconsDir = $"($simpleIconsDir)/icons"
 
 def icon-to-elm [] {
-  let name = $in
-  let body = open $"($iconsDir)/($name).svg" | from xml | svg-to-elm | indent
-  let fixedName = $name | icon-name-to-elm-word
-  $"($fixedName) : S.Svg x\n($fixedName) =\n($body)"
+  let icon = $in
+  let body = open $"($iconsDir)/($icon.slug).svg" | from xml | svg-to-elm | indent
+  let fixedName = $icon.slug | icon-name-to-elm-word
+  $"
+{-| Logo icon for “($icon.title)”. Default color is `#($icon.hex)`.
+-}
+($fixedName) : S.Svg x
+($fixedName) =
+($body)
+"
 }
 
 def svg-to-elm [] {
@@ -64,12 +71,14 @@ def indent [] {
 
 #################
 
-let iconsDir = "./node_modules/simple-icons/icons"
-let icons = glob $"($iconsDir)/*.svg" | each { path parse | get stem }
-let definitions = $icons | par-each { $in | icon-to-elm } 
-let moduleBody = $definitions | str join "\n\n\n"
+let iconData = open $"($simpleIconsDir)/data/simple-icons.json"
+let icons = $iconData | each {|icon| $icon | insert svg ($icon | icon-to-elm) } 
+let moduleBody = $icons | each { get svg } | str join "\n\n\n"
+let exposed = $icons | each { $in.slug | icon-name-to-elm-word } | str join ", " 
 
-let moduleText = $"module SimpleIcons exposing \(..)
+let moduleText = $"module SimpleIcons exposing \(
+    ($exposed)
+)
 
 import Svg as S
 import Svg.Attributes as Sa
