@@ -14,3 +14,11 @@ SimpleIcons.elm
 -- 7zip icon.
 SimpleIcons.n_7zip
 ```
+
+## Disclaimer
+
+This package only redistributes the content of the Simple Icons
+project in a format practical for Elm projects. The same [legal
+disclaimer](https://github.com/simple-icons/simple-icons/blob/develop/DISCLAIMER
+.md) applies to this content, so please read it before you use the provided
+icons.
