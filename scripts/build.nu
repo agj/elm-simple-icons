@@ -1,9 +1,15 @@
+# Files and directories.
+
 let simpleIconsDir = "./node_modules/simple-icons"
-let iconsDir = $"($simpleIconsDir)/icons"
+let iconSvgsDir = $"($simpleIconsDir)/icons"
+let iconDataFile = $"($simpleIconsDir)/data/simple-icons.json"
+let outputElmFile = "./src/SimpleIcons.elm"
+
+# Functions.
 
 def icon-to-elm [] {
   let icon = $in
-  let body = open $"($iconsDir)/($icon.slug).svg" | from xml | svg-to-elm | indent
+  let body = open $"($iconSvgsDir)/($icon.slug).svg" | from xml | svg-to-elm | indent
   let fixedName = $icon.slug | icon-name-to-elm-word
   $"
 {-| Logo icon for “($icon.title)”. Default color is `#($icon.hex)`.
@@ -69,9 +75,9 @@ def indent [] {
   $in | lines | each { $"    ($in)" } | str join "\n" 
 }
 
-#################
+# Generation.
 
-let iconData = open $"($simpleIconsDir)/data/simple-icons.json" | sort-by slug
+let iconData = open $iconDataFile | sort-by slug
 let icons = $iconData | each {|icon| $icon | insert svg ($icon | icon-to-elm) } 
 let moduleBody = $icons | each { get svg } | str join "\n\n\n"
 let exposed = $icons | each { $in.slug | icon-name-to-elm-word } | str join ", " 
@@ -94,6 +100,6 @@ svgRole = Html.Attributes.attribute \"role\"
 ($moduleBody)
 "
 
-$moduleText | save --force ./src/SimpleIcons.elm
+$moduleText | save --force $outputElmFile
 
-elm-format ./src/SimpleIcons.elm --yes
+elm-format $outputElmFile --yes
