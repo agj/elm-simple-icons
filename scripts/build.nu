@@ -71,14 +71,18 @@ def indent [] {
 
 #################
 
-let iconData = open $"($simpleIconsDir)/data/simple-icons.json"
+let iconData = open $"($simpleIconsDir)/data/simple-icons.json" | sort-by slug
 let icons = $iconData | each {|icon| $icon | insert svg ($icon | icon-to-elm) } 
 let moduleBody = $icons | each { get svg } | str join "\n\n\n"
 let exposed = $icons | each { $in.slug | icon-name-to-elm-word } | str join ", " 
 
-let moduleText = $"module SimpleIcons exposing \(
-    ($exposed)
-)
+let moduleText = $"module SimpleIcons exposing \(($exposed))
+
+{-|
+# Icons
+
+@docs ($exposed)
+-}
 
 import Svg as S
 import Svg.Attributes as Sa
