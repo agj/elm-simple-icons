@@ -11,8 +11,21 @@ def icon-to-elm [] {
   let icon = $in
   let body = open $"($iconSvgsDir)/($icon.slug).svg" | from xml | svg-to-elm | indent
   let fixedName = $icon.slug | icon-name-to-elm-word
+  let license = if ($icon has license) {
+      $"License: ($icon.license.type)."
+    } else {
+      "(No license information.)"
+    }
+  let guidelines = if ($icon has guidelines) {
+    $"[Brand guidelines.]\(($icon.guidelines))"
+  } else { "" }
+
   $"
 {-| Logo icon for “($icon.title)”. Default color is `#($icon.hex)`.
+
+($license)
+
+($guidelines)
 -}
 ($fixedName) : S.Svg x
 ($fixedName) =
