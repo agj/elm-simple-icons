@@ -177,7 +177,12 @@ toHtml : List \(Html.Attribute msg) -> Icon -> Html.Html msg
 toHtml theAttributes \(Icon iconOptions) =
     S.svg
       \(
-          [ svgRole \"img\", Sa.viewBox \"0 0 24 24\", Ha.style \"fill\" iconOptions.color ]
+          [ svgRole \"img\"
+          , Sa.viewBox \"0 0 24 24\"
+          , Ha.style \"fill\" iconOptions.color
+          , Ha.style \"width\" \"1em\"
+          , Ha.style \"height\" \"1em\"
+          ]
               ++ theAttributes
       )
       \(iconOptions.content |> List.map \(Html.map never))
