@@ -15,11 +15,17 @@ format:
     prettier --write *.md
     elm-format ./src/** --yes
 
-# Check that everything compiles.
+# Checks compilation and tests.
 check:
     @echo "ℹ️ Compiling examples…"
     cd ./examples/icons-list/ && elm make Main.elm --output=/dev/null
+    @echo "ℹ️ Running tests…"
+    elm-test
     @echo "✅ All okay."
+
+# Runs tests in watch mode.
+test-watch:
+    elm-test --watch
 
 [private]
 install:
