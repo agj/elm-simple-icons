@@ -1,6 +1,5 @@
 module ColorTests exposing (..)
 
-import Expect
 import SimpleIcons exposing (toHtml, withColor, withInheritedTextColor)
 import Test exposing (Test, describe, test)
 import Test.Html.Query as Query
