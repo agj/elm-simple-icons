@@ -100,6 +100,8 @@ let moduleText = $"module SimpleIcons exposing \(($exposed))
 {-|
 # Icons
 
+Find your icon at the [Simple Icons project website]\(https://simpleicons.org/).
+
 @docs ($exposed)
 -}
 
