@@ -104,7 +104,7 @@ let allIconsBody = $icons | each { $"\( \"($in.slug)\", ($in.slug | icon-name-to
   | to-elm-list | str join "\n" | indent
 
 let moduleText = $"
-module SimpleIcons exposing \(Icon, toHtml, allIcons, withColor, withInheritedTextColor, ($exposed))
+module SimpleIcons exposing \(Icon, toHtml, allIcons, withColor, withInheritedTextColor, withSize, ($exposed))
 
 {-|
 @docs Icon
@@ -113,7 +113,7 @@ module SimpleIcons exposing \(Icon, toHtml, allIcons, withColor, withInheritedTe
 
 # Configuration
 
-@docs withColor, withInheritedTextColor
+@docs withColor, withInheritedTextColor, withSize
 
 # Icons
 
@@ -142,6 +142,7 @@ type Icon =
     Icon
         { content : List \(S.Svg Never)
         , color : String
+        , size : String
         }
 
 {-| Sets the fill color of the icon. Can take any color value applicable
@@ -164,7 +165,14 @@ i.e. equivalent to the CSS `color` property. This is the same as `withColor
 -}
 withInheritedTextColor : Icon -> Icon
 withInheritedTextColor \(Icon iconOptions) =
-  Icon { iconOptions | color = \"defaultColor\" }
+    Icon { iconOptions | color = \"defaultColor\" }
+
+{-| Sets the size of the icon to a CSS dimension. By default it is set to
+`\"1em\"`, which is equivalent to the font size.
+-}
+withSize : String -> Icon -> Icon
+withSize theSize \(Icon iconOptions) =
+    Icon { iconOptions | size = theSize }
 
 {-| Converts your chosen `Icon` to a value that can be used in your HTML
 view. Takes a list of SVG or HTML attributes, which you may use to add event
@@ -180,8 +188,8 @@ toHtml theAttributes \(Icon iconOptions) =
           [ svgRole \"img\"
           , Sa.viewBox \"0 0 24 24\"
           , Ha.style \"fill\" iconOptions.color
-          , Ha.style \"width\" \"1em\"
-          , Ha.style \"height\" \"1em\"
+          , Ha.style \"width\" iconOptions.size
+          , Ha.style \"height\" iconOptions.size
           ]
               ++ theAttributes
       )
@@ -190,7 +198,7 @@ toHtml theAttributes \(Icon iconOptions) =
 
 toIcon : String -> List \(S.Svg Never) -> Icon
 toIcon theColor theContent =
-  Icon { content = theContent, color = theColor }
+  Icon { content = theContent, color = theColor, size = \"1em\" }
 
 {-| Dictionary of all the icons. The key is the identifying slug just as it is
 in the original Simple Icons.
