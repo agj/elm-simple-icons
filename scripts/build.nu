@@ -158,14 +158,14 @@ withColor newColor \(Icon iconOptions) =
 
 {-| Sets the icon's fill color to the same as the surrounding text color,
 i.e. equivalent to the CSS `color` property. This is the same as `withColor
-\"defaultColor\"`.
+\"currentColor\"`.
 
     SimpleIcons.elm
         |> SimpleIcons.withInheritedTextColor
 -}
 withInheritedTextColor : Icon -> Icon
 withInheritedTextColor \(Icon iconOptions) =
-    Icon { iconOptions | color = \"defaultColor\" }
+    Icon { iconOptions | color = \"currentColor\" }
 
 {-| Sets the size of the icon to a CSS dimension. By default it is set to
 `\"1em\"`, which is equivalent to the font size.
