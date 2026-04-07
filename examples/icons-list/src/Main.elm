@@ -24,7 +24,7 @@ view () =
                 |> Dict.toList
                 |> List.map
                     (\( slug, icon ) ->
-                        Html.div [ style "text-align" "center" ]
+                        Html.div []
                             [ icon
                                 |> SimpleIcons.withSize "50px"
                                 |> SimpleIcons.toHtml []
@@ -40,6 +40,7 @@ view () =
         , style "font-size" "10px"
         , style "line-height" "1.5em"
         , style "color" "#aac"
+        , style "text-align" "center"
         , style "word-break" "break-word"
         ]
         cells
