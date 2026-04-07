@@ -98,12 +98,12 @@ def indent [] {
 
 let iconData = open $iconDataFile | sort-by slug
 let icons = $iconData | each {|icon| $icon | insert svg ($icon | icon-to-elm) } 
-let moduleBody = $icons | each { get svg } | str join "\n\n\n"
 let exposed = $icons | each { $in.slug | icon-name-to-elm-word } | str join ", " 
 let allIconsBody = $icons | each { $"\( \"($in.slug)\", ($in.slug | icon-name-to-elm-word) )" }
   | to-elm-list | str join "\n" | indent
+let iconDefinitions = $icons | each { get svg } | str join "\n\n\n"
 
-let moduleText = $"
+let moduleContent = $"
 module SimpleIcons exposing \(Icon, toHtml, allIcons, withColor, withInheritedTextColor, withSize, ($exposed))
 
 {-|
@@ -208,10 +208,10 @@ allIcons =
     Dict.fromList
 ($allIconsBody)
 
-($moduleBody)
+($iconDefinitions)
 "
 
 mkdir ./src/
-$moduleText | save --force $outputElmFile
+$moduleContent | save --force $outputElmFile
 
 elm-format $outputElmFile --yes
