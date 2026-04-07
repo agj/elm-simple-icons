@@ -9,7 +9,7 @@ import Test.Html.Selector as Selector
 
 defaultTests : Test
 defaultTests =
-    test "Icon SVG has default <title> element" <|
+    test "Icon SVG has default `<title>` element" <|
         \_ ->
             SimpleIcons.elm
                 |> toHtml []
@@ -21,7 +21,7 @@ defaultTests =
 withTitleTests : Test
 withTitleTests =
     describe "withTitle"
-        [ test "Sets the <title> element content" <|
+        [ test "Sets the `<title>` element content" <|
             \_ ->
                 SimpleIcons.elm
                     |> withTitle "Some title"
@@ -29,7 +29,7 @@ withTitleTests =
                     |> Query.fromHtml
                     |> Query.find [ Selector.tag "title" ]
                     |> Query.has [ Selector.exactText "Some title" ]
-        , test "Removes the <title> element if set to the empty string" <|
+        , test "Removes the `<title>` element if set to the empty string" <|
             \_ ->
                 SimpleIcons.elm
                     |> withTitle ""
@@ -43,7 +43,7 @@ withTitleTests =
 withNoTitleTests : Test
 withNoTitleTests =
     describe "withNoTitle"
-        [ test "Removes the <title> element" <|
+        [ test "Removes the `<title>` element" <|
             \_ ->
                 SimpleIcons.elm
                     |> withNoTitle
