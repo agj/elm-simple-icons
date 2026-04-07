@@ -100,9 +100,11 @@ let iconData = open $iconDataFile | sort-by slug
 let icons = $iconData | each {|icon| $icon | insert svg ($icon | icon-to-elm) } 
 let moduleBody = $icons | each { get svg } | str join "\n\n\n"
 let exposed = $icons | each { $in.slug | icon-name-to-elm-word } | str join ", " 
+let allIconsBody = $icons | each { $"\( \"($in.slug)\", ($in.slug | icon-name-to-elm-word) )" }
+  | to-elm-list | str join "\n" | indent
 
 let moduleText = $"
-module SimpleIcons exposing \(Icon, toHtml, withColor, withInheritedTextColor, ($exposed))
+module SimpleIcons exposing \(Icon, toHtml, allIcons, withColor, withInheritedTextColor, ($exposed))
 
 {-|
 @docs Icon
@@ -120,6 +122,7 @@ Find your icon at the [Simple Icons project website]\(https://simpleicons.org/).
 In this package, slug names that start with a digit are prepended with `n_`, due
 to limitations of the language.
 
+@docs allIcons
 @docs ($exposed)
 -}
 
@@ -127,6 +130,7 @@ import Svg as S
 import Svg.Attributes as Sa
 import Html
 import Html.Attributes as Ha
+import Dict
 
 svgRole : String -> S.Attribute msg
 svgRole = Ha.attribute \"role\"
@@ -185,9 +189,18 @@ toIcon : String -> List \(S.Svg Never) -> Icon
 toIcon theColor theContent =
   Icon { content = theContent, color = theColor, attributes = [] }
 
+{-| Dictionary of all the icons. The key is the identifying slug just as it is
+in the original Simple Icons.
+-}
+allIcons : Dict.Dict String Icon
+allIcons =
+    Dict.fromList
+($allIconsBody)
+
 ($moduleBody)
 "
 
+mkdir ./src/
 $moduleText | save --force $outputElmFile
 
 elm-format $outputElmFile --yes
