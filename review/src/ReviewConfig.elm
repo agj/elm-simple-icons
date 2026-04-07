@@ -47,17 +47,17 @@ rulesForAllCode =
         { document = onlyExposed
         , from = exposedModules
         }
-    , Docs.ReviewLinksAndSections.rule
     , Docs.ReviewAtDocs.rule
+    , Docs.ReviewLinksAndSections.rule
     , Docs.UpToDateReadmeLinks.rule
     , NoConfusingPrefixOperator.rule
     , NoDebug.Log.rule
     , NoImportingEverything.rule []
     , NoMissingTypeExpose.rule
-    , NoSimpleLetBody.rule
     , NoPrematureLetComputation.rule
-    , NoUnused.CustomTypeConstructors.rule []
+    , NoSimpleLetBody.rule
     , NoUnused.CustomTypeConstructorArgs.rule
+    , NoUnused.CustomTypeConstructors.rule []
     , NoUnused.Dependencies.rule
     , Simplify.rule Simplify.defaults
     ]
