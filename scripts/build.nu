@@ -141,7 +141,6 @@ SVG node.
 type Icon =
     Icon
         { content : List \(S.Svg Never)
-        , attributes : List \(S.Attribute Never)
         , color : String
         }
 
@@ -179,7 +178,6 @@ toHtml theAttributes \(Icon iconOptions) =
     S.svg
       \(
           [ svgRole \"img\", Sa.viewBox \"0 0 24 24\", Ha.style \"fill\" iconOptions.color ]
-              ++ \(iconOptions.attributes |> List.map \(Ha.map never))
               ++ theAttributes
       )
       \(iconOptions.content |> List.map \(Html.map never))
@@ -187,7 +185,7 @@ toHtml theAttributes \(Icon iconOptions) =
 
 toIcon : String -> List \(S.Svg Never) -> Icon
 toIcon theColor theContent =
-  Icon { content = theContent, color = theColor, attributes = [] }
+  Icon { content = theContent, color = theColor }
 
 {-| Dictionary of all the icons. The key is the identifying slug just as it is
 in the original Simple Icons.
