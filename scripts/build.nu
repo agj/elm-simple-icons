@@ -9,7 +9,9 @@ let outputElmFile = "./src/SimpleIcons.elm"
 
 def icon-to-elm [] {
   let icon = $in
-  let body = open $"($iconSvgsDir)/($icon.slug).svg" | from xml | svg-to-elm | indent
+  let xml = open $"($iconSvgsDir)/($icon.slug).svg" | from xml
+  let svgContent = $xml | children-to-elm | str join "\n"
+  let body = $"toIcon \"#($icon.hex)\"\n($svgContent)" | indent
   let fixedName = $icon.slug | icon-name-to-elm-word
   let license = if ($icon has license) {
       $"License: ($icon.license.type)."
@@ -27,7 +29,7 @@ def icon-to-elm [] {
 
 ($guidelines)
 -}
-($fixedName) : S.Svg x
+($fixedName) : Icon
 ($fixedName) =
 ($body)
 "
@@ -42,9 +44,26 @@ def svg-to-elm [] {
 
   let tag = $node | get tag | tag-to-name
   let attributes = $node | get attributes | items {|name, value| attribute-to-elm $name $value } | str join ", "
-  let children = $node | get content | each { $in | svg-to-elm } | to-elm-list
+  let children = $node | children-to-elm
 
   [$"($tag) [ ($attributes) ]", ...$children] | str join "\n"
+}
+
+def children-to-elm [] {
+  get content | each { $in | svg-to-elm } | to-elm-list
+}
+
+def to-elm-list [] {
+  let items = $in
+
+  match $items {
+    [] => [$"[ ]"]
+    [$single] => [$"[ ($single) ]"]
+    [$head, ..$tail] => {
+      let tailWithCommas = $tail | each { $", ($in)" }
+      [$"[ ($head)", ...$tailWithCommas, "]"]
+    }
+  }
 }
 
 def is-text-node [] {
@@ -71,19 +90,6 @@ def attribute-to-name [] {
   }
 }
 
-def to-elm-list [] {
-  let items = $in
-
-  match $items {
-    [] => [$"[ ]"]
-    [$single] => [$"[ ($single) ]"]
-    [$head, ..$tail] => {
-      let tailWithCommas = $tail | each { $", ($in)" }
-      [$"[ ($head)", ...$tailWithCommas, "]"]
-    }
-  }
-}
-
 def indent [] {
   $in | lines | each { $"    ($in)" } | str join "\n" 
 }
@@ -95,9 +101,18 @@ let icons = $iconData | each {|icon| $icon | insert svg ($icon | icon-to-elm) }
 let moduleBody = $icons | each { get svg } | str join "\n\n\n"
 let exposed = $icons | each { $in.slug | icon-name-to-elm-word } | str join ", " 
 
-let moduleText = $"module SimpleIcons exposing \(($exposed))
+let moduleText = $"
+module SimpleIcons exposing \(Icon, toHtml, withColor, withInheritedTextColor, ($exposed))
 
 {-|
+@docs Icon
+
+@docs toHtml
+
+# Configuration
+
+@docs withColor, withInheritedTextColor
+
 # Icons
 
 Find your icon at the [Simple Icons project website]\(https://simpleicons.org/).
@@ -107,10 +122,65 @@ Find your icon at the [Simple Icons project website]\(https://simpleicons.org/).
 
 import Svg as S
 import Svg.Attributes as Sa
-import Html.Attributes
+import Html
+import Html.Attributes as Ha
 
 svgRole : String -> S.Attribute msg
-svgRole = Html.Attributes.attribute \"role\"
+svgRole = Ha.attribute \"role\"
+
+{-| The type of all icons in this package. Use `toHtml` to convert it into an
+SVG node.
+-}
+type Icon =
+    Icon
+        { content : List \(S.Svg Never)
+        , attributes : List \(S.Attribute Never)
+        , color : String
+        }
+
+{-| Sets the fill color of the icon. Can take any color value applicable
+to the [CSS `fill`
+property]\(https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/fill).
+
+    SimpleIcons.elm
+        |> SimpleIcons.withColor \"#000000\"
+-}
+withColor : String -> Icon -> Icon
+withColor newColor \(Icon iconOptions) =
+  Icon { iconOptions | color = newColor }
+
+{-| Sets the icon's fill color to the same as the surrounding text color,
+i.e. equivalent to the CSS `color` property. This is the same as `withColor
+\"defaultColor\"`.
+
+    SimpleIcons.elm
+        |> SimpleIcons.withInheritedTextColor
+-}
+withInheritedTextColor : Icon -> Icon
+withInheritedTextColor \(Icon iconOptions) =
+  Icon { iconOptions | color = \"defaultColor\" }
+
+{-| Converts your chosen `Icon` to a value that can be used in your HTML
+view. Takes a list of SVG or HTML attributes, which you may use to add event
+listeners, CSS classes, etc.
+
+    SimpleIcons.elm
+        |> SimpleIcons.toHtml []
+-}
+toHtml : List \(Html.Attribute msg) -> Icon -> Html.Html msg
+toHtml theAttributes \(Icon iconOptions) =
+    S.svg
+      \(
+          [ svgRole \"img\", Sa.viewBox \"0 0 24 24\", Ha.style \"fill\" iconOptions.color ]
+              ++ \(iconOptions.attributes |> List.map \(Ha.map never))
+              ++ theAttributes
+      )
+      \(iconOptions.content |> List.map \(Html.map never))
+
+
+toIcon : String -> List \(S.Svg Never) -> Icon
+toIcon theColor theContent =
+  Icon { content = theContent, color = theColor, attributes = [] }
 
 ($moduleBody)
 "
