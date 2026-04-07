@@ -212,6 +212,7 @@ listeners, CSS classes, etc.
 toHtml : List \(Html.Attribute msg) -> Icon -> Html.Html msg
 toHtml theAttributes \(Icon iconOptions) =
     let
+        titleNode : List \(S.Svg msg)
         titleNode =
             if iconOptions.title == ""
                 then []
