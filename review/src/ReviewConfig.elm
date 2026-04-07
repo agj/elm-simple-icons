@@ -32,6 +32,7 @@ import NoUnused.Exports
 import NoUnused.Parameters
 import NoUnused.Patterns
 import NoUnused.Variables
+import Review.Documentation.CodeSnippet
 import Review.Rule as Rule exposing (Rule)
 import Simplify
 
@@ -59,6 +60,7 @@ rulesForAllCode =
     , NoUnused.CustomTypeConstructorArgs.rule
     , NoUnused.CustomTypeConstructors.rule []
     , NoUnused.Dependencies.rule
+    , Review.Documentation.CodeSnippet.check
     , Simplify.rule Simplify.defaults
     ]
 

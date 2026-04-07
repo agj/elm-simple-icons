@@ -157,6 +157,7 @@ property]\(https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties
 
     SimpleIcons.elm
         |> SimpleIcons.withColor \"#000000\"
+    --: SimpleIcons.Icon
 -}
 withColor : String -> Icon -> Icon
 withColor newColor \(Icon iconOptions) =
@@ -168,6 +169,7 @@ i.e. equivalent to the CSS `color` property. This is the same as `withColor
 
     SimpleIcons.elm
         |> SimpleIcons.withInheritedTextColor
+    --: SimpleIcons.Icon
 -}
 withInheritedTextColor : Icon -> Icon
 withInheritedTextColor \(Icon iconOptions) =
@@ -178,6 +180,7 @@ withInheritedTextColor \(Icon iconOptions) =
 
     SimpleIcons.elm
         |> SimpleIcons.withSize \"20px\"
+    --: SimpleIcons.Icon
 -}
 withSize : String -> Icon -> Icon
 withSize theSize \(Icon iconOptions) =
@@ -188,6 +191,7 @@ name of the project or brand for the icon.
 
     SimpleIcons.elm
         |> SimpleIcons.withTitle \"Great functional language!\"
+    --: SimpleIcons.Icon
 -}
 withTitle : String -> Icon -> Icon
 withTitle theTitle \(Icon iconOptions) =
@@ -197,6 +201,7 @@ withTitle theTitle \(Icon iconOptions) =
 
     SimpleIcons.elm
         |> SimpleIcons.withNoTitle
+    --: SimpleIcons.Icon
 -}
 withNoTitle : Icon -> Icon
 withNoTitle \(Icon iconOptions) =
@@ -206,8 +211,11 @@ withNoTitle \(Icon iconOptions) =
 view. Takes a list of SVG or HTML attributes, which you may use to add event
 listeners, CSS classes, etc.
 
+    import Html
+
     SimpleIcons.elm
         |> SimpleIcons.toHtml []
+    --: Html.Html msg
 -}
 toHtml : List \(Html.Attribute msg) -> Icon -> Html.Html msg
 toHtml theAttributes \(Icon iconOptions) =
