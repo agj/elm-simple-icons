@@ -23,7 +23,7 @@ def icon-to-elm [] {
   } else { "" }
 
   $"
-{-| Logo icon for “($icon.title)”. Default color is `#($icon.hex)`.
+{-| Logo icon for “($icon.title)”. Its default color is `#($icon.hex)`.
 
 ($license)
 
@@ -116,6 +116,9 @@ module SimpleIcons exposing \(Icon, toHtml, withColor, withInheritedTextColor, (
 # Icons
 
 Find your icon at the [Simple Icons project website]\(https://simpleicons.org/).
+
+In this package, slug names that start with a digit are prepended with `n_`, due
+to limitations of the language.
 
 @docs ($exposed)
 -}
