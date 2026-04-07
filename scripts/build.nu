@@ -11,7 +11,7 @@ def icon-to-elm [] {
   let icon = $in
   let xml = open $"($iconSvgsDir)/($icon.slug).svg" | from xml
   let svgContent = $xml | children-to-elm | str join "\n"
-  let body = $"toIcon \"#($icon.hex)\"\n($svgContent)" | indent
+  let body = $"toIcon \"($icon.title)\" \"#($icon.hex)\"\n($svgContent)" | indent
   let fixedName = $icon.slug | icon-name-to-elm-word
   let license = if ($icon has license) {
       $"License: ($icon.license.type)."
@@ -40,6 +40,11 @@ def svg-to-elm [] {
 
   if ($node | is-text-node) {
     return $"S.text \"($node | get content)\""
+  }
+
+  if ($node.tag == "title") {
+    # The `<title>` is added by `toHtml`.
+    return
   }
 
   let tag = $node | get tag | tag-to-name
@@ -104,7 +109,7 @@ let allIconsBody = $icons | each { $"\( \"($in.slug)\", ($in.slug | icon-name-to
 let iconDefinitions = $icons | each { get svg } | str join "\n\n\n"
 
 let moduleContent = $"
-module SimpleIcons exposing \(Icon, toHtml, allIcons, withColor, withInheritedTextColor, withSize, ($exposed))
+module SimpleIcons exposing \(Icon, toHtml, allIcons, withColor, withInheritedTextColor, withSize, withTitle, withNoTitle, ($exposed))
 
 {-|
 @docs Icon
@@ -113,7 +118,7 @@ module SimpleIcons exposing \(Icon, toHtml, allIcons, withColor, withInheritedTe
 
 # Configuration
 
-@docs withColor, withInheritedTextColor, withSize
+@docs withColor, withInheritedTextColor, withSize, withTitle, withNoTitle
 
 # Icons
 
@@ -143,6 +148,7 @@ type Icon =
         { content : List \(S.Svg Never)
         , color : String
         , size : String
+        , title : String
         }
 
 {-| Sets the fill color of the icon. Can take any color value applicable
@@ -169,10 +175,32 @@ withInheritedTextColor \(Icon iconOptions) =
 
 {-| Sets the size of the icon to a CSS dimension. By default it is set to
 `\"1em\"`, which is equivalent to the font size.
+
+    SimpleIcons.elm
+        |> SimpleIcons.withSize \"20px\"
 -}
 withSize : String -> Icon -> Icon
 withSize theSize \(Icon iconOptions) =
     Icon { iconOptions | size = theSize }
+
+{-| Sets a new title \(which shows up on hover) for the icon. The default is the
+name of the project or brand for the icon.
+
+    SimpleIcons.elm
+        |> SimpleIcons.withTitle \"Great functional language!\"
+-}
+withTitle : String -> Icon -> Icon
+withTitle theTitle \(Icon iconOptions) =
+    Icon { iconOptions | title = theTitle }
+
+{-| Removes the title for the icon. Nothing will show up on hover.
+
+    SimpleIcons.elm
+        |> SimpleIcons.withNoTitle
+-}
+withNoTitle : Icon -> Icon
+withNoTitle \(Icon iconOptions) =
+    Icon { iconOptions | title = "" }
 
 {-| Converts your chosen `Icon` to a value that can be used in your HTML
 view. Takes a list of SVG or HTML attributes, which you may use to add event
@@ -183,6 +211,12 @@ listeners, CSS classes, etc.
 -}
 toHtml : List \(Html.Attribute msg) -> Icon -> Html.Html msg
 toHtml theAttributes \(Icon iconOptions) =
+    let
+        titleNode =
+            if iconOptions.title == ""
+                then []
+                else [ S.title [] [ Html.text iconOptions.title ] ]
+    in
     S.svg
       \(
           [ svgRole \"img\"
@@ -193,12 +227,13 @@ toHtml theAttributes \(Icon iconOptions) =
           ]
               ++ theAttributes
       )
-      \(iconOptions.content |> List.map \(Html.map never))
+      \(titleNode ++ \(iconOptions.content |> List.map \(Html.map never)))
 
+toIcon : String -> String -> List \(S.Svg Never) -> Icon
+toIcon theTitle theColor theContent =
+  Icon { content = theContent, color = theColor, title = theTitle, size = \"1em\" }
 
-toIcon : String -> List \(S.Svg Never) -> Icon
-toIcon theColor theContent =
-  Icon { content = theContent, color = theColor, size = \"1em\" }
+-- ICONS
 
 {-| Dictionary of all the icons. The key is the identifying slug just as it is
 in the original Simple Icons.
