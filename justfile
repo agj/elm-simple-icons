@@ -16,11 +16,13 @@ format:
     elm-format ./src/** --yes
 
 # Checks compilation and tests.
-check:
+check: build
     @echo "ℹ️ Compiling examples…"
     cd ./examples/icons-list/ && elm make Main.elm --output=/dev/null
     @echo "ℹ️ Running tests…"
     elm-test
+    @echo "ℹ️ Running elm-review…"
+    elm-review
     @echo "✅ All okay."
 
 # Runs tests in watch mode.

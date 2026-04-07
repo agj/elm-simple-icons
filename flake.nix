@@ -19,6 +19,7 @@
             pkgs.elmPackages.elm-doc-preview
             pkgs.elmPackages.elm-format
             pkgs.elmPackages.elm-json
+            pkgs.elmPackages.elm-review
             pkgs.elmPackages.elm-test
             pkgs.just
             pkgs.nodejs-slim_24
