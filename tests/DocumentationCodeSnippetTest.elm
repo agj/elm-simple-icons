@@ -14,6 +14,35 @@ tests =
     Test.describe
         "documentation code snippets"
         [ Test.describe
+            "readme"
+            [ Test.describe
+                "code snippet 0"
+                [ Test.test
+                    "0"
+                    (\() ->
+                        let
+                            unused : Html.Html msg
+                            unused =
+                                SimpleIcons.elm |> SimpleIcons.toHtml []
+                        in
+                        Expect.pass
+                    )
+                , Test.test
+                    "1"
+                    (\() ->
+                        let
+                            unused : Html.Html msg
+                            unused =
+                                SimpleIcons.svg
+                                    |> SimpleIcons.withColor "#FF00FF"
+                                    |> SimpleIcons.withSize "50px"
+                                    |> SimpleIcons.toHtml []
+                        in
+                        Expect.pass
+                    )
+                ]
+            ]
+        , Test.describe
             "SimpleIcons"
             [ Test.describe
                 "toHtml"

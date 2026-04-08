@@ -1,21 +1,37 @@
 # elm-simple-icons
 
-Many project and brand logos as flat SVG icons, from the [Simple
-Icons](https://simpleicons.org/) project.
+Over 3000 project and brand logos as flat SVG icons, from the [Simple
+Icons](https://simpleicons.org/) project, packaged for Elm projects.
 
 This package version matches Simple Icons **v16.15.0**.
 
-Icon definition names in this package are the same Simple Icons “slug” which you
-can find and copy in the website, with the exception of those which start with a
-number: those get `n_` prepended to the name.
+## Example use
 
 ```elm
--- Elm icon.
-SimpleIcons.elm
+import SimpleIcons
+import Html exposing (Html)
 
--- 7zip icon.
-SimpleIcons.n_7zip
+-- Icon with default color and size.
+SimpleIcons.elm
+    |> SimpleIcons.toHtml []
+--: Html msg
+
+-- Icon with custom color and size.
+SimpleIcons.svg
+    |> SimpleIcons.withColor "#FF00FF"
+    |> SimpleIcons.withSize "50px"
+    |> SimpleIcons.toHtml []
+--: Html msg
 ```
+
+## Installation
+
+```sh
+elm install agj/elm-simple-icons
+```
+
+Make sure to read the
+[**package documentation**](https://package.elm-lang.org/packages/agj/elm-simple-icons/1.0.0)!
 
 ## Disclaimer
 
