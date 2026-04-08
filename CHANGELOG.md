@@ -16,4 +16,4 @@ Matches Simple Icons v16.15.0.
   `withSize`, `withTitle`, `withNoTitle`.
 - A way to iterate over all icons in the `allIcons` `Dict`.
 - The `icons-list` example project.
-- Tests for all configuration functions.
+- Tests for all configuration functions and for `toHtml`.
