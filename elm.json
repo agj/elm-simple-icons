@@ -1,7 +1,7 @@
 {
     "type": "package",
     "name": "agj/elm-simple-icons",
-    "summary": "Logos of many brands and projects as SVG icons, from the Simple Icons project.",
+    "summary": "Logos for over 3000 brands and projects as SVG icons.",
     "license": "ISC",
     "version": "1.0.0",
     "exposed-modules": [
