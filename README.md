@@ -42,7 +42,7 @@ Make sure to read the [**package documentation**][package]!
 
 ## Changes
 
-See [`CHANGELOG.md`](changelog) for all changes in each version released.
+See [`CHANGELOG.md`][changelog] for all changes in each version released.
 
 [changelog]: https://github.com/agj/elm-simple-icons/blob/main/CHANGELOG.md
 
