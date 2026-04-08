@@ -11,7 +11,7 @@ Matches Simple Icons v16.15.0.
 
 ### Added
 
-- Icons of type `Icon`, converted to SVG/HTML via `toHtml`.
+- 3420 icons of type `Icon`, which can be converted to SVG/HTML using `toHtml`.
 - The following configuration functions: `withColor`, `withInheritedTextColor`,
   `withSize`, `withTitle`, `withNoTitle`.
 - A way to iterate over all icons in the `allIcons` `Dict`.
