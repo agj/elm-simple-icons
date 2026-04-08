@@ -122,10 +122,20 @@ module SimpleIcons exposing \(Icon, toHtml, allIcons, withColor, withInheritedTe
 
 # Icons
 
-Find your icon at the [Simple Icons project website]\(https://simpleicons.org/).
+Find your icon more easily at the [Simple Icons project
+website]\(https://simpleicons.org/). Make sure to read the [legal
+disclaimer]\(https://github.com/simple-icons/simple-icons/blob/develop/DISCLAIMER.md)
+regarding licensing. Each icon below displays license information and
+brand guidelines, if available.
 
-In this package, slug names that start with a digit are prepended with `n_`, due
-to limitations of the language.
+Icon SVGs are by default colored with their “brand color”, and carry a `<title>`
+element with the name of the project or brand, which should display on hover in
+browsers. See [Configuration]\(#configuration) above to see how to change these
+defaults.
+
+In this package, icon definition names are the same as the slug you can find at
+the Simple Icons website, with one caveat: due to limitations of the Elm syntax,
+slug names that start with a digit are prepended with `n_`.
 
 @docs allIcons
 @docs ($exposed)
@@ -140,8 +150,8 @@ import Dict
 svgRole : String -> S.Attribute msg
 svgRole = Ha.attribute \"role\"
 
-{-| The type of all icons in this package. Use `toHtml` to convert it into an
-SVG node.
+{-| The type for all icons in this package. Use `toHtml` to convert it into an
+SVG node you can use in your view.
 -}
 type Icon =
     Icon
@@ -186,8 +196,8 @@ withSize : String -> Icon -> Icon
 withSize theSize \(Icon iconOptions) =
     Icon { iconOptions | size = theSize }
 
-{-| Sets a new title \(which shows up on hover) for the icon. The default is the
-name of the project or brand for the icon.
+{-| Sets a new text for the `<title>` element \(which shows up on hover) for the
+icon. The default is the name of the project or brand corresponding to the icon.
 
     SimpleIcons.elm
         |> SimpleIcons.withTitle \"Great functional language!\"
@@ -197,7 +207,7 @@ withTitle : String -> Icon -> Icon
 withTitle theTitle \(Icon iconOptions) =
     Icon { iconOptions | title = theTitle }
 
-{-| Removes the title for the icon. Nothing will show up on hover.
+{-| Removes the `<title>` element for the icon. Nothing will show up on hover.
 
     SimpleIcons.elm
         |> SimpleIcons.withNoTitle
@@ -244,8 +254,8 @@ toIcon theTitle theColor theContent =
 
 -- ICONS
 
-{-| Dictionary of all the icons. The key is the identifying slug just as it is
-in the original Simple Icons.
+{-| Dictionary of all the icons. The keys are the slugs that identify each icon
+in the Simple Icons project.
 -}
 allIcons : Dict.Dict String Icon
 allIcons =
