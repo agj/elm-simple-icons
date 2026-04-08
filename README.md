@@ -40,6 +40,12 @@ Make sure to read the [**package documentation**][package]!
 
 [package]: https://package.elm-lang.org/packages/agj/elm-simple-icons/1.0.0
 
+## Changes
+
+See [`CHANGELOG.md`](changelog) for all changes in each version released.
+
+[changelog]: https://github.com/agj/elm-simple-icons/blob/main/CHANGELOG.md
+
 ## Disclaimer
 
 This package only redistributes the content of the Simple Icons project in
