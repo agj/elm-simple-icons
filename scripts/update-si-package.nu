@@ -27,11 +27,24 @@ def changelog-has-unreleased [] {
   (($content | lines | where $in =~ '^## Unreleased' | is-not-empty))
 }
 
+def git-has-changes [] {
+  git diff HEAD | is-not-empty
+}
+
+def git-branch-is [branchName] {
+  git branch --show-current | $in == $branchName
+}
+
 # Update package version.
 
-let versionBefore = get-current-si-version
-
 print "ℹ️ Attempting to update simple-icons npm package version…"
+
+let versionBefore = get-current-si-version
+let canCommit = (git-branch-is "dev") and (not (git-has-changes))
+
+if (not $canCommit) {
+  print "ℹ️ Won't automatically commit, as there are unsaved changes, or the branch is not `dev`."
+}
 
 ncu $siPackageName -u
 
@@ -55,6 +68,13 @@ if (changelog-has-unreleased) {
   update-file "CHANGELOG.md" $versionAfter
 } else {
   print "ℹ️ Changelog has no “Unreleased” block. Skipped."
+}
+
+if ($canCommit) {
+  print "ℹ️ Committing…"
+
+  git add .
+  git commit -m $"Update source simple-icons to v($versionAfter)"
 }
 
 print "✅ Updated! Remember to run `just build`."
