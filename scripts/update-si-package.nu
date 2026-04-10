@@ -51,7 +51,7 @@ ncu $siPackageName -u
 let versionAfter = get-current-si-version
 
 if ($versionAfter == $versionBefore) {
-  print $"✅ We're currently at the latest version ($versionBefore)!"
+  print $"✅ No changes made! Already up-to-date \(v($versionBefore))."
   exit
 }
 
