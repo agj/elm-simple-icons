@@ -42,6 +42,9 @@ if ($versionAfter == $versionBefore) {
   exit
 }
 
+print "ℹ️ Updating lockfile…"
+pnpm install
+
 print $"ℹ️ Updating from v($versionBefore) to v($versionAfter)…"
 
 print "ℹ️ Updating readme…"
