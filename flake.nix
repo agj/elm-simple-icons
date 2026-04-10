@@ -23,6 +23,7 @@
             pkgs.elmPackages.elm-test
             pkgs.just
             pkgs.nodejs-slim_24
+            pkgs.npm-check-updates
             pkgs.nushell
             pkgs.pnpm
             pkgs.prettier

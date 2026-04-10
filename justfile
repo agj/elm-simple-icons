@@ -10,6 +10,10 @@ build: install
 docs:
     elm-doc-preview --port 8001 --no-browser
 
+# Attempts to update the Simple Icons source package.
+update:
+    nu ./scripts/update-si-package.nu
+
 # Give standard format to files.
 format:
     prettier --write *.md

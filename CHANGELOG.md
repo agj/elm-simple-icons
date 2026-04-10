@@ -7,7 +7,7 @@ is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 [1.0.0]: https://github.com/agj/elm-simple-icons/tree/1.0.0
 
-Matches Simple Icons v16.15.0.
+Matches Simple Icons **v16.15.0**.
 
 ### Added
 
