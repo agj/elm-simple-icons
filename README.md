@@ -26,9 +26,11 @@ SimpleIcons.svg
 --: Html msg
 ```
 
-See a small [example project][example] in the repository.
+See a small [example project][example] in the repository, or see the live
+[Ellie][ellie].
 
 [example]: https://github.com/agj/elm-simple-icons/tree/1.0.0/examples/icons-list
+[ellie]: https://ellie-app.com/yt2yPXwMWFca1
 
 ## Installation
 
