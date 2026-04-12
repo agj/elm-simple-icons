@@ -35,6 +35,33 @@ def git-branch-is [branchName] {
   git branch --show-current | $in == $branchName
 }
 
+# Finds changes using `elm diff` and returns a list of changed icons with the
+# type of change.
+# 
+# This is an example of an “added” icon: `{ slug: 'anicon', change: 'Added' }`
+def get-changed-icons [] {
+  let groupRegex = '^    (\w+):$'
+  let iconRegex = '^        (\w+) :.*$'
+
+  let icons = elm diff | lines | reduce --fold { group: null, icons: [] } {|line, acc|
+    if ($line =~ $groupRegex) {
+      let group = $line | str replace --regex $groupRegex '$1'
+      { group: $group, icons: $acc.icons }
+    } else if ($acc.group != null) and ($line =~ $iconRegex) {
+      let icon = $line | str replace --regex $iconRegex '$1'
+      { group: $acc.group, icons: [...$acc.icons, { slug: $icon, change: $acc.group }] }
+    } else {
+      $acc
+    }
+  }
+
+  $icons.icons
+}
+
+def changed-icons-to-markdown [change] {
+  where change == $change | get slug | each { $"`($in)`" } | str join ", "
+}
+
 # Update package version.
 
 print "ℹ️ Attempting to update simple-icons npm package version…"
