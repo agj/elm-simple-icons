@@ -74,13 +74,13 @@ viewColorControlsOption color =
 viewIcons : Color -> Html Msg
 viewIcons color =
     Html.div
-        [ style "display" "grid"
-        , style "grid-template-columns" "repeat(10, 80px)"
+        [ style "display" "flex"
+        , style "flex-flow" "row wrap"
         , style "gap" "20px"
         , style "font-size" "10px"
         , style "line-height" "1.5em"
-        , style "color" "#aac"
         , style "text-align" "center"
+        , style "color" "#aac"
         , style "word-break" "break-word"
         ]
         (viewIconCells color)
@@ -90,16 +90,18 @@ viewIconCells : Color -> List (Html Msg)
 viewIconCells color =
     SimpleIcons.allIcons
         |> Dict.toList
-        |> List.map
-            (\( slug, icon ) ->
-                Html.div []
-                    [ icon
-                        |> SimpleIcons.withSize "50px"
-                        |> withColor color
-                        |> SimpleIcons.toHtml []
-                    , Html.div [] [ Html.text slug ]
-                    ]
-            )
+        |> List.map (\( slug, icon ) -> viewIconCell color slug icon)
+
+
+viewIconCell : Color -> String -> SimpleIcons.Icon -> Html Msg
+viewIconCell color slug icon =
+    Html.div [ style "width" "80px" ]
+        [ icon
+            |> SimpleIcons.withSize "50px"
+            |> withColor color
+            |> SimpleIcons.toHtml []
+        , Html.div [] [ Html.text slug ]
+        ]
 
 
 colorToString : Color -> String
