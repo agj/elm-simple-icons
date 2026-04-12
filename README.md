@@ -16,14 +16,14 @@ import Html exposing (Html)
 -- Icon with default color and size.
 SimpleIcons.elm
     |> SimpleIcons.toHtml []
---: Html msg
+    --: Html msg
 
 -- Icon with custom color and size.
 SimpleIcons.svg
     |> SimpleIcons.withColor "#FF00FF"
     |> SimpleIcons.withSize "50px"
     |> SimpleIcons.toHtml []
---: Html msg
+    --: Html msg
 ```
 
 See a small [example project][example] in the repository, or see the live
