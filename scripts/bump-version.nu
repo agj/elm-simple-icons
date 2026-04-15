@@ -1,3 +1,5 @@
+use ./utils/utils.nu [git-branch-is, git-has-changes]
+
 # CONSTANTS
 
 let stringVersionReplacements: list<closure> = [
@@ -26,9 +28,15 @@ def update-versions [versionBefore: string, versionAfter: string]: string -> str
 
 # BUMP VERSION
 
-let versionBefore = get-current-version
-
 print "ℹ️ Bumping Elm package version…"
+
+let versionBefore = get-current-version
+let canCommit = (git-branch-is "dev") and (not (git-has-changes))
+
+if (not $canCommit) {
+  print "ℹ️ Won't automatically commit, as there are unsaved changes, or the branch is not `dev`."
+}
+
 bump-version
 
 let versionAfter = get-current-version
@@ -43,3 +51,12 @@ open "README.md"
 
 print "ℹ️ Formatting…"
 just format
+
+if ($canCommit) {
+  print "ℹ️ Committing…"
+
+  git add .
+  git commit -m $"Bumped version to v($versionAfter)"
+}
+
+print "✅ Bumped successfully!"
