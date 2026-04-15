@@ -7,12 +7,12 @@ let outputElmFile = "./src/SimpleIcons.elm"
 
 # Functions.
 
-def icon-to-elm [] {
+def icon-to-elm []: record<title: string, slug: string, hex: string> -> string {
   let icon = $in
   let xml = open $"($iconSvgsDir)/($icon.slug).svg" | from xml
-  let svgContent = $xml | children-to-elm | str join "\n"
+  let svgContent = $xml | children-to-elm-list | str join "\n"
   let body = $"toIcon \"($icon.title)\" \"#($icon.hex)\"\n($svgContent)" | indent
-  let fixedName = $icon.slug | icon-name-to-elm-word
+  let fixedName = $icon.slug | icon-slug-to-elm-word
   let license = if ($icon has license) {
       $"License: ($icon.license.type)."
     } else {
@@ -35,7 +35,11 @@ def icon-to-elm [] {
 "
 }
 
-def svg-to-elm [] {
+def children-to-elm-list []: record<content: table<tag: string, attributes: record, content: list>> -> list<string> {
+  get content | each { $in | svg-to-elm } | to-elm-list
+}
+
+def svg-to-elm []: record<tag: string, content: table<tag: oneof<string, nothing>, attributes: oneof<record, nothing>, content: oneof<list, string>>> -> string {
   let node = $in
 
   if ($node | is-text-node) {
@@ -47,22 +51,18 @@ def svg-to-elm [] {
     return
   }
 
-  let tag = $node | get tag | tag-to-name
+  let tag = $node | get tag | tag-to-elm
   let attributes = $node | get attributes | items {|name, value| attribute-to-elm $name $value } | str join ", "
-  let children = $node | children-to-elm
+  let children = $node | children-to-elm-list
 
   [$"($tag) [ ($attributes) ]", ...$children] | str join "\n"
 }
 
-def children-to-elm [] {
-  get content | each { $in | svg-to-elm } | to-elm-list
-}
-
-def to-elm-list [] {
+def to-elm-list []: list<string> -> list<string> {
   let items = $in
 
   match $items {
-    [] => [$"[ ]"]
+    [] => [$"[]"]
     [$single] => [$"[ ($single) ]"]
     [$head, ..$tail] => {
       let tailWithCommas = $tail | each { $", ($in)" }
@@ -71,31 +71,31 @@ def to-elm-list [] {
   }
 }
 
-def is-text-node [] {
-  $in | get tag | is-empty
+def is-text-node []: record<tag: oneof<string, nothing>> -> bool {
+  $in.tag | is-empty
 }
 
-def tag-to-name [] {
+def tag-to-elm []: string -> string {
   $"S.($in)"
 }
 
-def icon-name-to-elm-word [] {
+def icon-slug-to-elm-word []: string -> string {
   let $name = $in
   if ($name =~ '^\d') { $"n_($name)" } else { $name }
 }
 
-def attribute-to-elm [name, value] {
-  $"($name | attribute-to-name) \"($value)\""
+def attribute-to-elm [name: string, value: string]: nothing -> string {
+  $"($name | attribute-name-to-elm) \"($value)\""
 }
 
-def attribute-to-name [] {
+def attribute-name-to-elm []: string -> string {
   match $in {
     "role" => "svgRole"
     _ => $"Sa.($in)"
   }
 }
 
-def indent [] {
+def indent []: string -> string {
   $in | lines | each { $"    ($in)" } | str join "\n" 
 }
 
@@ -103,8 +103,8 @@ def indent [] {
 
 let iconData = open $iconDataFile | sort-by slug
 let icons = $iconData | par-each --keep-order {|icon| $icon | insert svg ($icon | icon-to-elm) } 
-let exposed = $icons | each { $in.slug | icon-name-to-elm-word } | str join ", " 
-let allIconsBody = $icons | each { $"\( \"($in.slug)\", ($in.slug | icon-name-to-elm-word) )" }
+let exposed = $icons | each { $in.slug | icon-slug-to-elm-word } | str join ", " 
+let allIconsBody = $icons | each { $"\( \"($in.slug)\", ($in.slug | icon-slug-to-elm-word) )" }
   | to-elm-list | str join "\n" | indent
 let iconDefinitions = $icons | each { get svg } | str join "\n\n\n"
 
