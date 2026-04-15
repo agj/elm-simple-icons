@@ -51,6 +51,31 @@ open "README.md"
   | update-versions $versionBefore $versionAfter
   | save --force "README.md"
 
+print "ℹ️ Updating changelog…"
+
+let changelogLines = open "CHANGELOG.md" | lines
+let unreleasedHeader = "## Unreleased"
+let changelogUnreleasedHeaderLines = $changelogLines | enumerate | where item == $unreleasedHeader
+
+if (($changelogUnreleasedHeaderLines | length) == 0) {
+  print "❌ The changelog does not have an Unreleased section."
+  exit 1
+}
+
+let unreleasedHeaderIndex = $changelogLines | enumerate | where item == $unreleasedHeader | get 0.index
+let date = date now | format date "%Y-%m-%d"
+let unreleasedHeaderReplacement = $"## [($versionAfter)] \(($date))
+
+[($versionAfter)]: https://github.com/agj/elm-simple-icons/compare/($versionBefore)..($versionAfter)"
+
+let newChangelogLines = [
+    ...($changelogLines | first $unreleasedHeaderIndex),
+    $unreleasedHeaderReplacement,
+    ...($changelogLines | skip ($unreleasedHeaderIndex + 1)),
+  ]
+
+$newChangelogLines | str join "\n" | save --force "CHANGELOG.md"
+
 print "ℹ️ Formatting…"
 just format
 
