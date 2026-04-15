@@ -7,11 +7,13 @@ def doc-version-replace [version] { $"Simple Icons **v($version)**" }
 
 # FUNCTIONS
 
-def get-current-si-version [] {
+# Retrieves the current Simple Icons source package version.
+def get-current-si-version []: nothing -> string {
   open "package.json" | get devDependencies | get $siPackageName
 }
 
-def update-file [filename, version] {
+# Updates the Simple Icons source package version in a markdown file.
+def update-file [filename: string, version: string]: nothing -> nothing {
   let content = open $filename
   let newContent = $content | str replace --regex $docVersionRegex (doc-version-replace $version)
 
@@ -23,11 +25,13 @@ def update-file [filename, version] {
   $newContent | save --force $filename
 }
 
-def git-has-changes [] {
+# Checks whether there are uncommitted Git changes.
+def git-has-changes []: nothing -> bool {
   git diff HEAD | is-not-empty
 }
 
-def git-branch-is [branchName] {
+# Checks if the current Git branch matches the specified one.
+def git-branch-is [branchName: string]: nothing -> bool {
   git branch --show-current | $in == $branchName
 }
 
@@ -54,10 +58,14 @@ def get-changed-icons []: nothing -> list<record<slug: string, change: string>> 
   $icons.icons
 }
 
-def changed-icons-to-markdown [change] {
+# Taking a list of icon changes, compiles those matching the specified change
+# and converts them to a comma-separated Markdown syntax.
+def changed-icons-to-markdown [change: string]: list<record<slug: string, change: string>> -> string {
   where change == $change | get slug | each { $"`($in)`" } | str join ", "
 }
 
+# Taking a list of icon-changes as well as a Simple Icons update version,
+# generates markdown content to add to the changelog file.
 def changed-icons-to-changelog-details [version: string]: list<record<slug: string, change: string>> -> string {
   let changed = $in
   let added = $changed | changed-icons-to-markdown 'Added'
