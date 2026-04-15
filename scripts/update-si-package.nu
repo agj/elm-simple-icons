@@ -87,7 +87,7 @@ let versionBefore = get-current-si-version
 let canCommit = (git-branch-is "dev") and (not (git-has-changes))
 
 if (not $canCommit) {
-  print "ℹ️ Won't automatically commit, as there are unsaved changes, or the branch is not `dev`."
+  print "⚠️ Won't automatically commit, as there are unsaved changes, or the branch is not `dev`."
 }
 
 ncu $siPackageName -u
