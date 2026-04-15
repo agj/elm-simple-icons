@@ -1,10 +1,11 @@
-# Constants.
+# CONSTANTS
 
 let siPackageName = "simple-icons"
 let docVersionRegex = 'Simple Icons [*][*]v(\d+[.]\d+[.]\d+)[*][*]'
 def doc-version-replace [version] { $"Simple Icons **v($version)**" }
 
-# Functions.
+
+# FUNCTIONS
 
 def get-current-si-version [] {
   open "package.json" | get devDependencies | get $siPackageName
@@ -20,11 +21,6 @@ def update-file [filename, version] {
   }
 
   $newContent | save --force $filename
-}
-
-def changelog-has-unreleased [] {
-  let content = open "CHANGELOG.md"
-  (($content | lines | where $in =~ '^## Unreleased' | is-not-empty))
 }
 
 def git-has-changes [] {
@@ -62,7 +58,8 @@ def changed-icons-to-markdown [change] {
   where change == $change | get slug | each { $"`($in)`" } | str join ", "
 }
 
-# Update package version.
+
+# UPDATE PACKAGE VERSION
 
 print "ℹ️ Attempting to update simple-icons npm package version…"
 
@@ -85,17 +82,57 @@ if ($versionAfter == $versionBefore) {
 print "ℹ️ Updating lockfile…"
 pnpm install
 
+print "ℹ️ Building & checking…"
+just check
+
 print $"ℹ️ Updating from v($versionBefore) to v($versionAfter)…"
 
 print "ℹ️ Updating readme…"
 update-file "README.md" $versionAfter
 
-if (changelog-has-unreleased) {
-  print "ℹ️ Updating changelog's “Unreleased” block…"
-  update-file "CHANGELOG.md" $versionAfter
-} else {
-  print "ℹ️ Changelog has no “Unreleased” block. Skipped."
-}
+print "ℹ️ Updating changelog…"
+
+let changelogLines = open "CHANGELOG.md" | lines
+let firstH2Index = $changelogLines | enumerate | where item =~ '^## ' | get index.0
+
+# New source package version.
+let sourcePackageVersion = $"Updated for Simple Icons v($versionAfter)."
+
+# Added and removed icons in changelog.
+let changed = get-changed-icons
+let added = $changed | changed-icons-to-markdown 'Added'
+let removed = $changed | changed-icons-to-markdown 'Removed'
+let addedSection = if ($added | is-not-empty) {
+    $"### Added\n\n- New icons: ($added)."
+  } else {
+    ""
+  }
+let removedSection = if ($removed | is-not-empty) {
+    $"### Removed\n\n- Removed icons: ($removed)."
+  } else {
+    ""
+  }
+
+let hasUnreleasedSection = (($changelogLines | get $firstH2Index) =~ '^## Unreleased')
+
+let newChangelogLines = if ($hasUnreleasedSection) {
+    [...($changelogLines | first ($firstH2Index + 1)),
+    $sourcePackageVersion,
+    $addedSection,
+    $removedSection,
+    ...($changelogLines | skip ($firstH2Index + 1)),
+    ]
+  } else {
+    [...($changelogLines | first $firstH2Index),
+    "## Unreleased",
+    $sourcePackageVersion,
+    $addedSection,
+    $removedSection,
+    ...($changelogLines | skip $firstH2Index),
+    ]
+  }
+
+$newChangelogLines | str join "\n" | save --force "CHANGELOG.md"
 
 if ($canCommit) {
   print "ℹ️ Committing…"
@@ -103,5 +140,8 @@ if ($canCommit) {
   git add .
   git commit -m $"Update source simple-icons to v($versionAfter)"
 }
+
+print "ℹ️ Formatting files…"
+just format
 
 print "✅ Updated! Remember to run `just build`."
