@@ -1,3 +1,5 @@
+use ./utils/utils.nu [git-branch-is, git-has-changes]
+
 # CONSTANTS
 
 let siPackageName = "simple-icons"
@@ -23,16 +25,6 @@ def update-file [filename: string, version: string]: nothing -> nothing {
   }
 
   $newContent | save --force $filename
-}
-
-# Checks whether there are uncommitted Git changes.
-def git-has-changes []: nothing -> bool {
-  git diff HEAD | is-not-empty
-}
-
-# Checks if the current Git branch matches the specified one.
-def git-branch-is [branchName: string]: nothing -> bool {
-  git branch --show-current | $in == $branchName
 }
 
 # Finds changes using `elm diff` and returns a list of changed icons with the
