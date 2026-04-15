@@ -7,13 +7,17 @@ is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 [1.1.0]: https://github.com/agj/elm-simple-icons/compare/1.0.0..1.1.0
 
-Updated for Simple Icons **v16.16.0**.
+Updated for Simple Icons v16.16.0.
+
+### Added
+
+- New icons: `cachyos`, `fluxer`, `trmnl`.
 
 ## [1.0.0] (2026-04-08)
 
 [1.0.0]: https://github.com/agj/elm-simple-icons/tree/1.0.0
 
-Matches Simple Icons **v16.15.0**.
+Matches Simple Icons v16.15.0.
 
 ### Added
 
