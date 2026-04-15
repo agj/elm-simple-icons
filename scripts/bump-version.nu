@@ -2,6 +2,8 @@ use ./utils/utils.nu [git-branch-is, git-has-changes]
 
 # CONSTANTS
 
+# List of functions that take a package version number and return a string to
+# search for and replace, to update the version in the documentation.
 let stringVersionReplacements: list<closure> = [
   {|v| $"elm-simple-icons/tree/($v)" }
   {|v| $"elm-simple-icons/($v)" }
@@ -10,14 +12,18 @@ let stringVersionReplacements: list<closure> = [
 
 # FUNCTIONS
 
+# Gets the current package version in `elm.json`.
 def get-current-version []: nothing -> string {
   open "elm.json" | get version
 }
 
+# Bumps the package version up in `elm.json`.
 def bump-version []: nothing -> nothing {
   echo 'y' | elm bump
 }
 
+# Replaces all substrings containing the old package version with the new
+# version.
 def update-versions [versionBefore: string, versionAfter: string]: string -> string {
   let source = $in
   $stringVersionReplacements | reduce --fold $source {|getString, acc|
@@ -58,13 +64,14 @@ let unreleasedHeader = "## Unreleased"
 let changelogUnreleasedHeaderLines = $changelogLines | enumerate | where item == $unreleasedHeader
 
 if (($changelogUnreleasedHeaderLines | length) == 0) {
-  print "❌ The changelog does not have an Unreleased section."
+  print "❌ The changelog does not have an “Unreleased” section."
   exit 1
 }
 
 let unreleasedHeaderIndex = $changelogLines | enumerate | where item == $unreleasedHeader | get 0.index
 let date = date now | format date "%Y-%m-%d"
-let unreleasedHeaderReplacement = $"## [($versionAfter)] \(($date))
+let unreleasedHeaderReplacement = $"
+## [($versionAfter)] \(($date))
 
 [($versionAfter)]: https://github.com/agj/elm-simple-icons/compare/($versionBefore)..($versionAfter)"
 
