@@ -1,12 +1,15 @@
-# Files and directories.
+# FILES AND DIRECTORIES
 
 let simpleIconsDir = "./node_modules/simple-icons"
 let iconSvgsDir = $"($simpleIconsDir)/icons"
 let iconDataFile = $"($simpleIconsDir)/data/simple-icons.json"
 let outputElmFile = "./src/SimpleIcons.elm"
 
-# Functions.
 
+# FUNCTIONS
+
+# Converts metadata for an icon (an entry from `simple-icons.json`) into a
+# string representing a full Elm definition for said icon.
 def icon-to-elm []: record<title: string, slug: string, hex: string> -> string {
   let icon = $in
   let xml = open $"($iconSvgsDir)/($icon.slug).svg" | from xml
@@ -35,10 +38,14 @@ def icon-to-elm []: record<title: string, slug: string, hex: string> -> string {
 "
 }
 
+# Taking an XML-as-nuon SVG node, converts all of its child nodes into a list of
+# lines of an Elm list representation, including `[]` and `,` syntax to separate
+# each item.
 def children-to-elm-list []: record<content: table<tag: string, attributes: record, content: list>> -> list<string> {
   get content | each { $in | svg-to-elm } | to-elm-list
 }
 
+# Takes an XML-as-nuon SVG node and converts it into Elm code as string.
 def svg-to-elm []: record<tag: string, content: table<tag: oneof<string, nothing>, attributes: oneof<record, nothing>, content: oneof<list, string>>> -> string {
   let node = $in
 
@@ -58,6 +65,8 @@ def svg-to-elm []: record<tag: string, content: table<tag: oneof<string, nothing
   [$"($tag) [ ($attributes) ]", ...$children] | str join "\n"
 }
 
+# Takes a list of strings of Elm code and formats it as an Elm list, adding `[]`
+# and `,` syntax. Returns another list of strings.
 def to-elm-list []: list<string> -> list<string> {
   let items = $in
 
@@ -71,23 +80,28 @@ def to-elm-list []: list<string> -> list<string> {
   }
 }
 
+# Determines whether an XML-as-nuon SVG node is a text node.
 def is-text-node []: record<tag: oneof<string, nothing>> -> bool {
   $in.tag | is-empty
 }
 
+# Converts an SVG tag to an `elm/svg` function.
 def tag-to-elm []: string -> string {
   $"S.($in)"
 }
 
+# Normalizes an icon slug to an Elm name suitable for a definition.
 def icon-slug-to-elm-word []: string -> string {
   let $name = $in
   if ($name =~ '^\d') { $"n_($name)" } else { $name }
 }
 
+# Converts an attribute name and value to an Elm `Svg.Attribute` value.
 def attribute-to-elm [name: string, value: string]: nothing -> string {
   $"($name | attribute-name-to-elm) \"($value)\""
 }
 
+# Converts an attribute name to an `elm/svg` attribute function.
 def attribute-name-to-elm []: string -> string {
   match $in {
     "role" => "svgRole"
@@ -95,11 +109,13 @@ def attribute-name-to-elm []: string -> string {
   }
 }
 
+# Indents text by four spaces.
 def indent []: string -> string {
   $in | lines | each { $"    ($in)" } | str join "\n" 
 }
 
-# Generation.
+
+# GENERATION
 
 let iconData = open $iconDataFile | sort-by slug
 let icons = $iconData | par-each --keep-order {|icon| $icon | insert svg ($icon | icon-to-elm) } 
