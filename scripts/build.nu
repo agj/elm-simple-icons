@@ -102,7 +102,7 @@ def indent [] {
 # Generation.
 
 let iconData = open $iconDataFile | sort-by slug
-let icons = $iconData | each {|icon| $icon | insert svg ($icon | icon-to-elm) } 
+let icons = $iconData | par-each --keep-order {|icon| $icon | insert svg ($icon | icon-to-elm) } 
 let exposed = $icons | each { $in.slug | icon-name-to-elm-word } | str join ", " 
 let allIconsBody = $icons | each { $"\( \"($in.slug)\", ($in.slug | icon-name-to-elm-word) )" }
   | to-elm-list | str join "\n" | indent
