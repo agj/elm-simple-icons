@@ -149,4 +149,4 @@ if ($canCommit) {
 print "ℹ️ Formatting files…"
 just format
 
-print "✅ Updated! Remember to run `just build`."
+print "✅ Updated!"
