@@ -28,8 +28,6 @@ def update-versions [versionBefore: string, versionAfter: string]: string -> str
 
 # BUMP VERSION
 
-print "ℹ️ Bumping Elm package version…"
-
 let versionBefore = get-current-version
 let canCommit = (git-branch-is "dev") and (not (git-has-changes))
 
@@ -37,6 +35,10 @@ if (not $canCommit) {
   print "⚠️ Won't automatically commit, as there are unsaved changes, or the branch is not `dev`."
 }
 
+print "ℹ️ Building…"
+just build
+
+print "ℹ️ Bumping Elm package version…"
 bump-version
 
 let versionAfter = get-current-version
