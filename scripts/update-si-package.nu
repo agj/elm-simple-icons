@@ -35,7 +35,7 @@ def git-branch-is [branchName] {
 # type of change.
 # 
 # This is an example of an “added” icon: `{ slug: 'anicon', change: 'Added' }`
-def get-changed-icons [] {
+def get-changed-icons []: nothing -> list<record<slug: string, change: string>> {
   let groupRegex = '^    (\w+):$'
   let iconRegex = '^        (\w+) :.*$'
 
@@ -56,6 +56,26 @@ def get-changed-icons [] {
 
 def changed-icons-to-markdown [change] {
   where change == $change | get slug | each { $"`($in)`" } | str join ", "
+}
+
+def changed-icons-to-changelog-details [version: string]: list<record<slug: string, change: string>> -> string {
+  let changed = $in
+  let added = $changed | changed-icons-to-markdown 'Added'
+  let removed = $changed | changed-icons-to-markdown 'Removed'
+
+  let sourcePackageVersion = $"Updated for Simple Icons v($version)."
+  let addedSection = if ($added | is-not-empty) {
+      $"### Added\n\n- New icons: ($added)."
+    } else {
+      ""
+    }
+  let removedSection = if ($removed | is-not-empty) {
+      $"### Removed\n\n- Removed icons: ($removed)."
+    } else {
+      ""
+    }
+
+  [$sourcePackageVersion, $addedSection, $removedSection] | str join "\n\n"
 }
 
 
@@ -94,40 +114,17 @@ print "ℹ️ Updating changelog…"
 
 let changelogLines = open "CHANGELOG.md" | lines
 let firstH2Index = $changelogLines | enumerate | where item =~ '^## ' | get index.0
-
-# New source package version.
-let sourcePackageVersion = $"Updated for Simple Icons v($versionAfter)."
-
-# Added and removed icons in changelog.
-let changed = get-changed-icons
-let added = $changed | changed-icons-to-markdown 'Added'
-let removed = $changed | changed-icons-to-markdown 'Removed'
-let addedSection = if ($added | is-not-empty) {
-    $"### Added\n\n- New icons: ($added)."
-  } else {
-    ""
-  }
-let removedSection = if ($removed | is-not-empty) {
-    $"### Removed\n\n- Removed icons: ($removed)."
-  } else {
-    ""
-  }
-
 let hasUnreleasedSection = (($changelogLines | get $firstH2Index) =~ '^## Unreleased')
 
 let newChangelogLines = if ($hasUnreleasedSection) {
     [...($changelogLines | first ($firstH2Index + 1)),
-    $sourcePackageVersion,
-    $addedSection,
-    $removedSection,
+    (get-changed-icons | changed-icons-to-changelog-details $versionAfter),
     ...($changelogLines | skip ($firstH2Index + 1)),
     ]
   } else {
     [...($changelogLines | first $firstH2Index),
     "## Unreleased",
-    $sourcePackageVersion,
-    $addedSection,
-    $removedSection,
+    (get-changed-icons | changed-icons-to-changelog-details $versionAfter),
     ...($changelogLines | skip $firstH2Index),
     ]
   }
