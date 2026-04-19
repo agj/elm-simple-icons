@@ -19,7 +19,7 @@ SimpleIcons.elm
     --: Html msg
 
 -- Icon with custom color and size.
-SimpleIcons.svg
+SimpleIcons.wikimediacommons
     |> SimpleIcons.withColor "#FF00FF"
     |> SimpleIcons.withSize "50px"
     |> SimpleIcons.toHtml []
