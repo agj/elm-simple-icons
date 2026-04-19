@@ -27,12 +27,12 @@ format:
 check: build
     @echo "ℹ️ Compiling examples…"
     cd ./examples/icons-list/ && elm make Main.elm --output=/dev/null
-    @echo "ℹ️ Running tests…"
-    elm-test
     @echo "ℹ️ Compiling docs…"
     elm make --docs=deleteme.json && rm deleteme.json
     @echo "ℹ️ Running elm-review…"
     elm-review
+    @echo "ℹ️ Running tests…"
+    elm-test
     @echo "✅ All okay."
 
 # Runs tests in watch mode.
