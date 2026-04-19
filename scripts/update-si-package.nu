@@ -131,14 +131,14 @@ let newChangelogLines = if ($hasUnreleasedSection) {
 
 $newChangelogLines | str join "\n" | save --force "CHANGELOG.md"
 
+print "ℹ️ Formatting files…"
+just format
+
 if ($canCommit) {
   print "ℹ️ Committing…"
 
   git add .
   git commit -m $"Update source simple-icons to v($versionAfter)"
 }
-
-print "ℹ️ Formatting files…"
-just format
 
 print "✅ Updated!"
