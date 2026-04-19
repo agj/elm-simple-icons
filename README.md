@@ -3,7 +3,7 @@
 Over 3000 project and brand logos as flat SVG icons, from the [Simple
 Icons][simple-icons] project, packaged for easy use within Elm.
 
-This package version matches Simple Icons **v16.16.0**.
+This package version matches Simple Icons **v16.17.0**.
 
 [simple-icons]: https://simpleicons.org/
 
@@ -19,7 +19,7 @@ SimpleIcons.elm
     --: Html msg
 
 -- Icon with custom color and size.
-SimpleIcons.svg
+SimpleIcons.wikimediacommons
     |> SimpleIcons.withColor "#FF00FF"
     |> SimpleIcons.withSize "50px"
     |> SimpleIcons.toHtml []
@@ -29,7 +29,7 @@ SimpleIcons.svg
 See a small [example project][example] in the repository, or see the live
 [Ellie][ellie].
 
-[example]: https://github.com/agj/elm-simple-icons/tree/1.1.0/examples/icons-list
+[example]: https://github.com/agj/elm-simple-icons/tree/1.2.0/examples/icons-list
 [ellie]: https://ellie-app.com/yt2yPXwMWFca1
 
 ## Installation
@@ -40,7 +40,7 @@ elm install agj/elm-simple-icons
 
 Make sure to read the [**package documentation**][package]!
 
-[package]: https://package.elm-lang.org/packages/agj/elm-simple-icons/1.1.0
+[package]: https://package.elm-lang.org/packages/agj/elm-simple-icons/1.2.0
 
 ## Changes
 
