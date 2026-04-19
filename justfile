@@ -14,6 +14,10 @@ docs:
 update:
     nu ./scripts/update-si-package.nu
 
+# Attempts to bump this package version.
+bump:
+    nu ./scripts/bump-version.nu
+
 # Give standard format to files.
 format:
     prettier --write *.md
