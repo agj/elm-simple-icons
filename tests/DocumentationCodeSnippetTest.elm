@@ -33,7 +33,7 @@ tests =
                         let
                             unused : Html.Html msg
                             unused =
-                                SimpleIcons.svg
+                                SimpleIcons.wikimediacommons
                                     |> SimpleIcons.withColor "#FF00FF"
                                     |> SimpleIcons.withSize "50px"
                                     |> SimpleIcons.toHtml []
