@@ -13,6 +13,10 @@ Updated for Simple Icons v16.18.0.
 
 - New icons: `deepseek`, `moonshotai`, `neon`, `qwen`.
 
+### Changed
+
+- Updated design: `1password`, `esphome`, `simpleicons`.
+
 ## [1.2.0] (2026-04-19)
 
 [1.2.0]: https://github.com/agj/elm-simple-icons/compare/1.1.0..1.2.0
