@@ -48,6 +48,11 @@ diff: build
 bump:
     nu ./scripts/bump-version.nu
 
+# Commit and tag the updated module.
+[group("update")]
+commit:
+    nu ./scripts/commit-module.nu
+
 [private]
 install:
     pnpm install

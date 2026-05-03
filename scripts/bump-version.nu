@@ -1,4 +1,4 @@
-use ./utils/utils.nu [git-branch-is, git-has-changes]
+use ./utils/utils.nu [git-branch-is, git-has-changes, get-local-version]
 
 # CONSTANTS
 
@@ -11,11 +11,6 @@ let stringVersionReplacements: list<closure> = [
 
 
 # FUNCTIONS
-
-# Gets the current package version in `elm.json`.
-def get-current-version []: nothing -> string {
-  open "elm.json" | get version
-}
 
 # Bumps the package version up in `elm.json`.
 def bump-version []: nothing -> nothing {
@@ -34,7 +29,7 @@ def update-versions [versionBefore: string, versionAfter: string]: string -> str
 
 # BUMP VERSION
 
-let versionBefore = get-current-version
+let versionBefore = get-local-version
 let canCommit = (git-branch-is "dev") and (not (git-has-changes))
 
 if (not $canCommit) {
@@ -47,7 +42,7 @@ just build
 print "ℹ️ Bumping Elm package version…"
 bump-version
 
-let versionAfter = get-current-version
+let versionAfter = get-local-version
 
 print $"ℹ️ Bumped from v($versionBefore) to v($versionAfter) in `elm.json`."
 
