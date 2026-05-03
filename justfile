@@ -10,20 +10,13 @@ build: install
 docs:
     elm-doc-preview --port 8001 --no-browser
 
-# Attempts to update the Simple Icons source package.
-update:
-    nu ./scripts/update-si-package.nu
-
-# Attempts to bump this package version.
-bump:
-    nu ./scripts/bump-version.nu
-
 # Give standard format to files.
 format:
     prettier --write *.md
     elm-format ./src/** --yes
 
-# Checks compilation and tests.
+# Check compilation and tests.
+[group("check")]
 check: build
     @echo "ℹ️ Compiling examples…"
     cd ./examples/icons-list/ && elm make Main.elm --output=/dev/null
@@ -35,9 +28,20 @@ check: build
     elm-test
     @echo "✅ All okay."
 
-# Runs tests in watch mode.
+# Run tests in watch mode.
+[group("check")]
 test-watch:
     elm-test --watch
+
+# Update the Simple Icons source package.
+[group("update")]
+update:
+    nu ./scripts/update-si-package.nu
+
+# Bump this package version.
+[group("update")]
+bump:
+    nu ./scripts/bump-version.nu
 
 [private]
 install:
