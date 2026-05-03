@@ -38,6 +38,11 @@ test-watch:
 update:
     nu ./scripts/update-si-package.nu
 
+# Show changes in the generated Elm module versus the latest release.
+[group("update")]
+diff: build
+    git diff --unified=10 'releases:src/SimpleIcons.elm' 'src/SimpleIcons.elm'
+
 # Bump this package version.
 [group("update")]
 bump:
