@@ -33,7 +33,7 @@ let versionBefore = get-local-version
 let canCommit = (git-branch-is "dev") and (not (git-has-changes))
 
 if (not $canCommit) {
-  print "⚠️ Won't automatically commit, as there are unsaved changes, or the branch is not `dev`."
+  print "⚠️ Won't automatically commit, as there are uncommitted changes, or the branch is not `dev`."
 }
 
 print "ℹ️ Building…"
