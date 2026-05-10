@@ -11,6 +11,10 @@ Updated for Simple Icons v16.19.0.
 
 - New icons: `cinny`, `heliumbrowser`, `langchaincorporate`.
 
+### Changed
+
+- Updated design: `langchain`, `langgraph`.
+
 ## [1.3.1] (2026-05-03)
 
 [1.3.1]: https://github.com/agj/elm-simple-icons/compare/1.3.0..1.3.1
