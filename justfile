@@ -15,6 +15,8 @@ format:
     prettier --write *.md
     elm-format ./src/** --yes
 
+# CHECK
+
 # Check compilation and tests.
 [group("check")]
 check: build
@@ -33,6 +35,8 @@ check: build
 test-watch:
     elm-test --watch
 
+# UPDATE
+
 # Update the Simple Icons source package.
 [group("update")]
 update:
@@ -47,6 +51,13 @@ diff: build
 [group("update")]
 bump:
     nu ./scripts/bump-version.nu
+
+# Commit and tag the updated module.
+[group("update")]
+commit:
+    nu ./scripts/commit-module.nu
+
+# PRIVATE
 
 [private]
 install:
