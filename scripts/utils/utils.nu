@@ -7,3 +7,8 @@ export def git-has-changes []: nothing -> bool {
 export def git-branch-is [branchName: string]: nothing -> bool {
   git branch --show-current | $in == $branchName
 }
+
+# Gets the current package version in `elm.json`.
+export def get-local-version []: nothing -> string {
+  open "elm.json" | get version
+}

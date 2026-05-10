@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.4.0] (2026-05-10)
+
+[1.4.0]: https://github.com/agj/elm-simple-icons/compare/1.3.1..1.4.0
+
+Updated for Simple Icons v16.19.0.
+
+### Added
+
+- New icons: `cinny`, `heliumbrowser`, `langchaincorporate`.
+
+### Changed
+
+- Updated design: `langchain`, `langgraph`.
+
 ## [1.3.1] (2026-05-03)
 
 [1.3.1]: https://github.com/agj/elm-simple-icons/compare/1.3.0..1.3.1
