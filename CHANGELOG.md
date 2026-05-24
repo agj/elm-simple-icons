@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## Unreleased
+
+Updated for Simple Icons v16.21.0.
+
+### Added
+
+- New icons: `await`, `lmstudio`, `opentui`.
+
 ## [1.5.0] (2026-05-17)
 
 [1.5.0]: https://github.com/agj/elm-simple-icons/compare/1.4.0..1.5.0

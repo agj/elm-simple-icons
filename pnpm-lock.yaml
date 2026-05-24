@@ -9,15 +9,15 @@ importers:
   .:
     devDependencies:
       simple-icons:
-        specifier: 16.20.0
-        version: 16.20.0
+        specifier: 16.21.0
+        version: 16.21.0
 
 packages:
 
-  simple-icons@16.20.0:
-    resolution: {integrity: sha512-2b7Xu+Zy+iwLiuLSAcWuxnM1ETNFy7JmxWSjh0Y/A8P3KGjFFcokbpWbUf/IivMNbR9WuZ/QQlirh5bGh3Q2vA==}
+  simple-icons@16.21.0:
+    resolution: {integrity: sha512-kH6LEx5yvBGVNaVrHnZ7D17G16CmmHiI8DD7MwIwgnWmDFTiFu4PhFZLNdV6bMGr61qbHMMTXLoo/T6C25dMGA==}
     engines: {node: '>=0.12.18'}
 
 snapshots:
 
-  simple-icons@16.20.0: {}
+  simple-icons@16.21.0: {}
