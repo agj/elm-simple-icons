@@ -3,7 +3,7 @@
 Over 3000 project and brand logos as flat SVG icons, from the [Simple
 Icons][simple-icons] project, packaged for easy use within Elm.
 
-This package version matches Simple Icons **v16.21.0**.
+This package version matches Simple Icons **v16.22.0**.
 
 [simple-icons]: https://simpleicons.org/
 
