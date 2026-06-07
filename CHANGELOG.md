@@ -11,6 +11,10 @@ Updated for Simple Icons v16.23.0.
 
 - New icons: `agentskills`, `m5stack`, `opencode`, `pi`.
 
+### Changed
+
+- Added license and brand guidelines: `nixos`.
+
 ## [1.7.0] (2026-05-31)
 
 [1.7.0]: https://github.com/agj/elm-simple-icons/compare/1.6.0..1.7.0
