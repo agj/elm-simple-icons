@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## Unreleased
+
+Updated for Simple Icons v16.24.0.
+
+### Added
+
+- New icons: `fawry`, `metaai`, `radiantearth`, `tangled`.
+
 ## [1.8.0] (2026-06-07)
 
 [1.8.0]: https://github.com/agj/elm-simple-icons/compare/1.7.0..1.8.0
