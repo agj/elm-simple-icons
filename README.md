@@ -29,7 +29,7 @@ SimpleIcons.wikimediacommons
 See a small [example project][example] in the repository, or see the live
 [Ellie][ellie].
 
-[example]: https://github.com/agj/elm-simple-icons/tree/1.8.0/examples/icons-list
+[example]: https://github.com/agj/elm-simple-icons/tree/1.9.0/examples/icons-list
 [ellie]: https://ellie-app.com/yt2yPXwMWFca1
 
 ## Installation
@@ -40,7 +40,7 @@ elm install agj/elm-simple-icons
 
 Make sure to read the [**package documentation**][package]!
 
-[package]: https://package.elm-lang.org/packages/agj/elm-simple-icons/1.8.0
+[package]: https://package.elm-lang.org/packages/agj/elm-simple-icons/1.9.0
 
 ## Changes
 
