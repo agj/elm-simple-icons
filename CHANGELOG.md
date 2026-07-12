@@ -3,7 +3,9 @@
 All notable changes to this project will be documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## Unreleased
+## [1.11.0] (2026-07-12)
+
+[1.11.0]: https://github.com/agj/elm-simple-icons/compare/1.10.0..1.11.0
 
 Updated for Simple Icons v16.26.0.
 
