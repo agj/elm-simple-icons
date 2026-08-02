@@ -11,6 +11,11 @@ Updated for Simple Icons v16.28.0.
 
 - New icons: `trae`, `zectrix`, `zx`.
 
+### Changed
+
+- Updated design: `lmstudio`, `tanstack`, `threads`.
+- Updated name: `kimi`.
+
 ## [1.12.0] (2026-07-20)
 
 [1.12.0]: https://github.com/agj/elm-simple-icons/compare/1.11.0..1.12.0
