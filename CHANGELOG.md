@@ -11,6 +11,10 @@ Updated for Simple Icons v16.29.0.
 
 - New icons: `albumoftheyear`, `simpleiconscdn`, `tencenthy`, `traxsource`.
 
+### Changed
+
+- Updated design: `payloadcms`, `shortcut`.
+
 ## [1.13.0] (2026-08-02)
 
 [1.13.0]: https://github.com/agj/elm-simple-icons/compare/1.12.0..1.13.0
