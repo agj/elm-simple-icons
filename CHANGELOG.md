@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## Unreleased
+
+Updated for Simple Icons v16.31.0.
+
+### Added
+
+- New icons: `alphaxiv`.
+
 ## [1.15.0] (2026-09-06)
 
 [1.15.0]: https://github.com/agj/elm-simple-icons/compare/1.14.0..1.15.0
