@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.17.0] (2026-09-21)
+
+[1.17.0]: https://github.com/agj/elm-simple-icons/compare/1.16.0..1.17.0
+
+Updated for Simple Icons v16.32.0.
+
+### Added
+
+- New icons: `godox`.
+
 ## [1.16.0] (2026-09-13)
 
 [1.16.0]: https://github.com/agj/elm-simple-icons/compare/1.15.0..1.16.0

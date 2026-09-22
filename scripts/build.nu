@@ -119,7 +119,12 @@ def indent []: string -> string {
 
 let iconData = open $iconDataFile | sort-by slug
 let icons = $iconData | par-each --keep-order {|icon| $icon | insert svg ($icon | icon-to-elm) } 
-let exposed = $icons | each { $in.slug | icon-slug-to-elm-word } | str join ", " 
+let exposed = $icons
+  | each { $in.slug | icon-slug-to-elm-word }
+  # Split into multiple lines so that it's not a single infinite line of all icon names.
+  | chunk-by { str substring 0..1 }
+  | each { str join ", " }
+  | str join ",\n" 
 let allIconsBody = $icons | each { $"\( \"($in.slug)\", ($in.slug | icon-slug-to-elm-word) )" }
   | to-elm-list | str join "\n" | indent
 let iconDefinitions = $icons | each { get svg } | str join "\n\n\n"
