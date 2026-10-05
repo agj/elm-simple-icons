@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.18.0] (2026-10-04)
+
+[1.18.0]: https://github.com/agj/elm-simple-icons/compare/1.17.0..1.18.0
+
+Updated for Simple Icons v16.34.0.
+
+### Added
+
+- New icons: `hypit`, `notesnook`, `sumup`.
+
 ## [1.17.0] (2026-09-21)
 
 [1.17.0]: https://github.com/agj/elm-simple-icons/compare/1.16.0..1.17.0
