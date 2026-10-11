@@ -19,7 +19,7 @@ module SimpleIcons exposing
     , apache, apacheairflow, apacheant, apachearrow, apacheavro, apachecassandra, apachecloudstack, apachecordova, apachecouchdb, apachedolphinscheduler, apachedoris, apachedruid, apacheecharts, apacheflink, apachefreemarker, apachegroovy, apacheguacamole, apachehadoop, apachehbase, apachehive, apachejmeter, apachekafka, apachekylin, apachelucene, apachemaven, apachenetbeanside, apachenifi, apacheopenoffice, apacheparquet, apachepdfbox, apachepulsar, apacherocketmq, apachesolr, apachespark, apachestorm, apachesuperset, apachetomcat, aparat, apifox, apmterminals, apollographql, apostrophe, appgallery, appian, appimage, appium, apple, applearcade, applemusic, applenews, applepay, applepodcasts, appletv, appmanager, appsignal, appsmith, appstore, appveyor, appwrite
     , aqua
     , aral, arangodb, arc, arcgis, archicad, archiveofourown, archlinux, ardour, arduino, argo, argos, ariakit, arkecosystem, arlo, arm, armkeil, arstechnica, artifacthub, artixlinux, artstation, arxiv
-    , asahilinux, asana, asciidoctor, asciinema, asda, aseprite, assemblyscript, asterisk, astonmartin, astra, astral, astro, asus
+    , asahilinux, asana, asciidoctor, asciinema, asda, aseprite, aspire, assemblyscript, asterisk, astonmartin, astra, astral, astro, asus
     , atandt, atari, atlasos, atlassian, atomgit
     , auchan, audacity, audi, audible, audiobookshelf, audioboom, audiomack, audiotechnica, aurelia, autentique, auth0, authelia, authentik, autocad, autocannon, autodesk, autodeskmaya, autodeskrevit, autohotkey, autoit, automattic, autoprefixer, autozone
     , avajs, avaloniaui, avast, avianca, avira, avm
@@ -410,7 +410,7 @@ module SimpleIcons exposing
     , zabka, zaim, zalando, zalo, zap, zapier, zara, zazzle
     , zcash, zcool
     , zdf, zdotai
-    , zebpay, zebratechnologies, zectrix, zedindustries, zelle, zenbrowser, zend, zendesk, zenn, zenodo, zensar, zerodha, zerotier, zettlr
+    , zebpay, zebratechnologies, zectrix, zedindustries, zelle, zenbrowser, zend, zendesk, zenn, zenodo, zensar, zensical, zerodha, zerotier, zettlr
     , zhihu
     , zig, zigbee, zigbee2mqtt, ziggo, zilch, zillow, zincsearch, zingat
     , zod, zoho, zoiper, zola, zomato, zoom, zorin, zotero
@@ -466,7 +466,7 @@ slug names that start with a digit are prepended with `n_`.
 @docs apache, apacheairflow, apacheant, apachearrow, apacheavro, apachecassandra, apachecloudstack, apachecordova, apachecouchdb, apachedolphinscheduler, apachedoris, apachedruid, apacheecharts, apacheflink, apachefreemarker, apachegroovy, apacheguacamole, apachehadoop, apachehbase, apachehive, apachejmeter, apachekafka, apachekylin, apachelucene, apachemaven, apachenetbeanside, apachenifi, apacheopenoffice, apacheparquet, apachepdfbox, apachepulsar, apacherocketmq, apachesolr, apachespark, apachestorm, apachesuperset, apachetomcat, aparat, apifox, apmterminals, apollographql, apostrophe, appgallery, appian, appimage, appium, apple, applearcade, applemusic, applenews, applepay, applepodcasts, appletv, appmanager, appsignal, appsmith, appstore, appveyor, appwrite
 @docs aqua
 @docs aral, arangodb, arc, arcgis, archicad, archiveofourown, archlinux, ardour, arduino, argo, argos, ariakit, arkecosystem, arlo, arm, armkeil, arstechnica, artifacthub, artixlinux, artstation, arxiv
-@docs asahilinux, asana, asciidoctor, asciinema, asda, aseprite, assemblyscript, asterisk, astonmartin, astra, astral, astro, asus
+@docs asahilinux, asana, asciidoctor, asciinema, asda, aseprite, aspire, assemblyscript, asterisk, astonmartin, astra, astral, astro, asus
 @docs atandt, atari, atlasos, atlassian, atomgit
 @docs auchan, audacity, audi, audible, audiobookshelf, audioboom, audiomack, audiotechnica, aurelia, autentique, auth0, authelia, authentik, autocad, autocannon, autodesk, autodeskmaya, autodeskrevit, autohotkey, autoit, automattic, autoprefixer, autozone
 @docs avajs, avaloniaui, avast, avianca, avira, avm
@@ -857,7 +857,7 @@ slug names that start with a digit are prepended with `n_`.
 @docs zabka, zaim, zalando, zalo, zap, zapier, zara, zazzle
 @docs zcash, zcool
 @docs zdf, zdotai
-@docs zebpay, zebratechnologies, zectrix, zedindustries, zelle, zenbrowser, zend, zendesk, zenn, zenodo, zensar, zerodha, zerotier, zettlr
+@docs zebpay, zebratechnologies, zectrix, zedindustries, zelle, zenbrowser, zend, zendesk, zenn, zenodo, zensar, zensical, zerodha, zerotier, zettlr
 @docs zhihu
 @docs zig, zigbee, zigbee2mqtt, ziggo, zilch, zillow, zincsearch, zingat
 @docs zod, zoho, zoiper, zola, zomato, zoom, zorin, zotero
@@ -1240,6 +1240,7 @@ allIcons =
         , ( "asciinema", asciinema )
         , ( "asda", asda )
         , ( "aseprite", aseprite )
+        , ( "aspire", aspire )
         , ( "assemblyscript", assemblyscript )
         , ( "asterisk", asterisk )
         , ( "astonmartin", astonmartin )
@@ -4447,6 +4448,7 @@ allIcons =
         , ( "zenn", zenn )
         , ( "zenodo", zenodo )
         , ( "zensar", zensar )
+        , ( "zensical", zensical )
         , ( "zerodha", zerodha )
         , ( "zerotier", zerotier )
         , ( "zettlr", zettlr )
@@ -7876,6 +7878,22 @@ aseprite =
     toIcon "Aseprite"
         "#7D929E"
         [ S.path [ Sa.d "M4.006 0v1.6h15.988V0zm15.988 1.6v1.6h1.6V1.6zm1.6 1.6v14.4h-1.6v1.6H4.006v-1.6h-1.6V3.2H.809v17.6h1.599v1.6h1.599V24h15.988v-1.6h1.6v-1.6h1.598V3.2zm-19.187 0h1.599V1.6h-1.6zm4.796 3.2v6.4h1.6V6.4zm7.995 0v6.4h1.599V6.4z" ]
+            []
+        ]
+
+
+{-| Logo icon for “Aspire”. Its default color is `#7455DD`.
+
+License: CC0-1.0.
+
+[Brand guidelines.](https://github.com/microsoft/aspire-brand/tree/main/logo/developer-tools#developer-icon-usage-permission)
+
+-}
+aspire : Icon
+aspire =
+    toIcon "Aspire"
+        "#7455DD"
+        [ S.path [ Sa.d "M2.625 22.7445C1.1775 22.7445 0 21.567 0 20.1195c0-.472.1245-.931.36-1.3284L6.6137 7.959l.0255-.0382L9.7264 2.568c.4687-.81 1.3395-1.3125 2.274-1.3125s1.8052.5025 2.2732 1.3118L23.649 18.806c.2265.3817.351.8407.351 1.3125 0 1.4475-1.1775 2.625-2.625 2.625zm20.2508-2.625q0-.4114-.2003-.75l-3.3525-5.8123v-.0004l-.0002-.0004-2.8875-4.995q-.0062-.0105-.0127-.0204l-.0025-.0036q-.0035-.0067-.0075-.0133l-3.1123-5.3929q-.4331-.75-1.2997-.75t-1.2998.75l-3.127 5.414-.0005.0009-.0004.0003q-.0078.014-.0146.0282l-.0026.0039q-.0066.01-.0126.0204l-2.8657 4.9587-.3206.5593-.0014.0024-.0005.001L1.327 19.366q-.2021.342-.2021.7532 0 .6223.439 1.0613.4387.4387 1.0612.4387h18.7506q.622 0 1.061-.4387.4388-.439.4388-1.0613zM8.876 7.7897l2.474-4.2834q.2168-.375.6503-.375t.6502.375l3.1069 5.383.0026.0051q.0103.0208.0235.0403l.0082.0126 2.5564 4.422h-5.3884l-.6345-1.1021-.0002-.0004-2.1525-3.7275-.001-.0017-.0008-.0017q-.209-.3532-.5505-.5405-.3569-.209-.7442-.2053zm7.002 12.3294q0 .3117-.2194.5308-.2192.2194-.5306.2194h-4.9513q.0127-.022.0245-.0439.1716-.3174.1716-.7063 0-.3911-.183-.72l-.0023-.0047q-.0198-.0427-.051-.082l-.974-1.5867-.0002-.0004-2.2086-3.6064h5.574l.1228.21.0011.002.0117.02.0825.143 3.03 5.2461q.1022.1892.1022.3791m6.2475 0q0 .3117-.2192.5308-.2192.2194-.5307.2194H16.432q.0128-.022.0246-.0439.1716-.3174.1716-.7063 0-.383-.1958-.742l-.0045-.008-.0139-.0238-3.0183-5.2264h5.3859l3.2443 5.625q.1.1692.1.3752zm-12.5027 0q0 .3117-.2194.5308-.2192.2194-.5306.2194H2.625q-.3114 0-.5306-.2194-.2194-.2191-.2194-.5306 0-.2062.0979-.3718l3.0307-5.2511.0013-.0025.0006-.0009q.2076-.3506.5968-.3726.026-.0015.0529-.0015.4187 0 .6401.361l.0002.0002 2.2275 3.6375.0002.0001.99 1.6125q.007.0115.0148.0224.0949.1636.0949.3665m-3.9703-6.75 2.5336-4.3847.0233-.035q.0195-.029.033-.0608.1573-.2434.4399-.3195.2989-.0806.5617.075l.0124.007q.1626.088.2674.2645l.001.0015 2.1503 3.7238.0002.0005.4187.7275h-6.439zm3.8679 6.3705-.0028-.0047q-.045-.0766-.045-.178 0 .0502.0133.0987.0122.0443.0345.084" ]
             []
         ]
 
@@ -54298,6 +54316,20 @@ zensar =
     toIcon "Zensar"
         "#000000"
         [ S.path [ Sa.d "M12.929 13.776c.28.084 1.01.205 1.662.205 1.047 0 1.64-.463 1.64-1.283 0-.683-.464-1.01-1.412-1.29-.73-.213-1.04-.319-1.04-.653 0-.38.334-.562.744-.554.561.008 1.062.425 1.336 1.131h.129v-1.131a7.835 7.835 0 0 0-1.412-.167c-1.07 0-1.678.47-1.678 1.23 0 .615.41.979 1.313 1.237.896.258 1.177.364 1.177.744 0 .341-.364.57-.82.57-.721 0-1.275-.54-1.518-1.284h-.121v1.245zm-1.911-3.72c-.4 0-.847.207-1.253.651v-.597H8.023v.144c.418 0 .6.213.6.524v3.127H9.78v-2.974c.243-.253.495-.343.66-.343.32 0 .564.205.564.623v2.694h1.166v-2.694c0-.699-.378-1.154-1.152-1.154zm-5.606 1.921v.228c0 .88.402 1.412 1.161 1.412.501 0 .88-.243 1.154-.615l.137.083c-.334.585-.934.896-1.678.896-1.427 0-2.11-.804-2.11-2.027 0-1.199.835-1.935 2.004-1.935 1.177 0 1.807.698 1.807 1.73v.228H5.412zm.463-1.768a.986.986 0 0 0-.463.107v1.464h1.192v-.767c0-.508-.243-.804-.729-.804zm14.5 1.077v2.62H19.13v-.433a1.72 1.72 0 0 1-1.214.508c-.73 0-1.185-.417-1.185-.964s.365-.804.767-.934l1.617-.53v-.57c0-.494-.25-.774-.706-.774-.15 0-.271.018-.387.05v1.08a1.497 1.497 0 0 1-.516.084c-.38 0-.623-.22-.623-.524 0-.561.79-.865 1.754-.865 1.01 0 1.738.342 1.738 1.252zm-1.822 2.194a.767.767 0 0 0 .562-.213v-1.51l-1.1.367v.711c0 .425.181.645.538.645zM3.681 10.21v-.099H.121v1.48h.13c.106-.645.645-1.328 1.54-1.328v1.746L0 13.807v.098h3.651V12.35h-.129c-.114.653-.698 1.404-1.624 1.404v-1.745l1.783-1.8zM24 10.042v1.1h-.66c-.384 0-.682.058-.866.403v2.36h-1.157v-3.127c0-.311-.182-.524-.6-.524v-.144h1.742v1.146c.37-.83.795-1.214 1.366-1.214H24z" ]
+            []
+        ]
+
+
+{-| Logo icon for “Zensical”. Its default color is `#FFA656`.
+
+(No license information.)
+
+-}
+zensical : Icon
+zensical =
+    toIcon "Zensical"
+        "#FFA656"
+        [ S.path [ Sa.d "M12 0c6.627 0 12 5.374 12 12 0 1.765-.383 3.442-1.068 4.954a2.51 2.51 0 0 1-2.32 1.496H8.498c-2.597 0-3.525-3.456-1.274-4.757l2.807-1.619.646 1.776-2.533 1.464c-.61.352-.36 1.291.346 1.291h4.193a8631 8631 0 0 1-3.02-8.3h1.979l.854 2.347 3.427-1.979c.611-.352.362-1.291-.346-1.291H3.387a.67.67 0 0 0-.626.405A10.1 10.1 0 0 0 1.847 12c0 5.607 4.544 10.153 10.153 10.153.606 0 1.203-.053 1.782-.155a.69.69 0 0 0 .53-.919l-.623-1.708h1.981l.387 1.062a2.538 2.538 0 0 1-1.952 3.38Q13.08 23.998 12 24C5.373 24 0 18.626 0 12c0-1.775.386-3.458 1.078-4.975a2.5 2.5 0 0 1 2.318-1.491h5.259l-.717-1.968A2.54 2.54 0 0 1 9.887.186 12 12 0 0 1 12 0m9.249 16.197c.582-1.28.904-2.7.904-4.198C22.153 6.39 17.606 1.846 12 1.846q-.918.001-1.789.155a.69.69 0 0 0-.53.919l.951 2.612h4.934c2.6 0 3.525 3.456 1.274 4.757l-3.7 2.134 1.522 4.177h5.958a.68.68 0 0 0 .63-.404Z" ]
             []
         ]
 
