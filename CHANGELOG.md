@@ -11,6 +11,11 @@ Updated for Simple Icons v16.36.0.
 
 - New icons: `haproxy`.
 
+### Changed
+
+- Updated design: `await`, `elixir`.
+- Added brand guidelines: `elixir`.
+
 ## [1.19.0] (2026-10-11)
 
 [1.19.0]: https://github.com/agj/elm-simple-icons/compare/1.18.0..1.19.0
