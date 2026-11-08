@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## Unreleased
+
+Updated for Simple Icons v16.37.0.
+
+### Added
+
+- New icons: `newapi`, `oceanbase`, `zilliz`.
+
 ## [1.20.0] (2026-10-25)
 
 [1.20.0]: https://github.com/agj/elm-simple-icons/compare/1.19.0..1.20.0
