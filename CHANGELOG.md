@@ -11,6 +11,11 @@ Updated for Simple Icons v16.37.0.
 
 - New icons: `newapi`, `oceanbase`, `zilliz`.
 
+### Changed
+
+- Updated design: `n8n`, `python`.
+- Added brand guidelines: `n8n`.
+
 ## [1.20.0] (2026-10-25)
 
 [1.20.0]: https://github.com/agj/elm-simple-icons/compare/1.19.0..1.20.0
