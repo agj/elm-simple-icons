@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file. The format
 is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [1.21.0] (2026-11-08)
+
+[1.21.0]: https://github.com/agj/elm-simple-icons/compare/1.20.0..1.21.0
+
+Updated for Simple Icons v16.37.0.
+
+### Added
+
+- New icons: `newapi`, `oceanbase`, `zilliz`.
+
+### Changed
+
+- Updated design: `n8n`, `python`.
+- Added brand guidelines: `n8n`.
+
 ## [1.20.0] (2026-10-25)
 
 [1.20.0]: https://github.com/agj/elm-simple-icons/compare/1.19.0..1.20.0
