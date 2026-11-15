@@ -186,7 +186,7 @@ module SimpleIcons exposing
     , kedro, keenetic, keepachangelog, keepassxc, keeper, keeweb, kenmei, kentico, keploy, keras, keybase, keycdn, keycloak, keystone
     , kfc
     , khanacademy, khronosgroup
-    , kia, kibana, kicad, kick, kickstarter, kik, kimi, kingstontechnology, kinopoisk, kinsta, kirby, kit, kitsu, kiwix
+    , kia, kibana, kicad, kick, kickstarter, kik, kimi, kingstontechnology, kinopoisk, kinsta, kirby, kit, kitsu, kitty, kiwix
     , klarna, kleinanzeigen, klm, klook
     , knative, knexdotjs, knime, knip, knowledgebase, known
     , koa, koc, kodak, kodi, kodular, koenigsegg, kofax, kofi, komoot, konami, kong, kongregate, konva, koreader, kotlin, koyeb
@@ -339,7 +339,7 @@ module SimpleIcons exposing
     , todoist, toggl, toggltrack, tokio, tokyometro, toll, toml, tomorrowland, tomtom, ton, topcoder, topdotgg, toptal, torbrowser, torizon, torproject, toshiba, totvs, tourbox, tower, toyota
     , tplink
     , tqdm
-    , traccar, tradingview, trae, traefikmesh, traefikproxy, trailforks, trainerroad, trakt, transifex, transmission, transportforireland, transportforlondon, travisci, traxsource, treehouse, trello, trendmicro, tresorit, treyarch, trezor, tricentis, trilium, triller, trillertv, trimble, trino, tripadvisor, tripdotcom, trivago, trivy, trmnl, trove, trpc, truenas, trueup, trulia, trustedshops, trustpilot, tryhackme, tryitonline
+    , traccar, tradingview, trae, traefikmesh, traefikproxy, trafficdotcv, trailforks, trainerroad, trakt, transifex, transmission, transportforireland, transportforlondon, travisci, traxsource, treehouse, trello, trendmicro, tresorit, treyarch, trezor, tricentis, trilium, triller, trillertv, trimble, trino, tripadvisor, tripdotcom, trivago, trivy, trmnl, trove, trpc, truenas, trueup, trulia, trustedshops, trustpilot, tryhackme, tryitonline
     , tsnode
     , tubi, tui, tumblr, turbo, turborepo, turbosquid, turkishairlines, turso, tuta, tuxedocomputers
     , tv4play, tvtime
@@ -633,7 +633,7 @@ slug names that start with a digit are prepended with `n_`.
 @docs kedro, keenetic, keepachangelog, keepassxc, keeper, keeweb, kenmei, kentico, keploy, keras, keybase, keycdn, keycloak, keystone
 @docs kfc
 @docs khanacademy, khronosgroup
-@docs kia, kibana, kicad, kick, kickstarter, kik, kimi, kingstontechnology, kinopoisk, kinsta, kirby, kit, kitsu, kiwix
+@docs kia, kibana, kicad, kick, kickstarter, kik, kimi, kingstontechnology, kinopoisk, kinsta, kirby, kit, kitsu, kitty, kiwix
 @docs klarna, kleinanzeigen, klm, klook
 @docs knative, knexdotjs, knime, knip, knowledgebase, known
 @docs koa, koc, kodak, kodi, kodular, koenigsegg, kofax, kofi, komoot, konami, kong, kongregate, konva, koreader, kotlin, koyeb
@@ -786,7 +786,7 @@ slug names that start with a digit are prepended with `n_`.
 @docs todoist, toggl, toggltrack, tokio, tokyometro, toll, toml, tomorrowland, tomtom, ton, topcoder, topdotgg, toptal, torbrowser, torizon, torproject, toshiba, totvs, tourbox, tower, toyota
 @docs tplink
 @docs tqdm
-@docs traccar, tradingview, trae, traefikmesh, traefikproxy, trailforks, trainerroad, trakt, transifex, transmission, transportforireland, transportforlondon, travisci, traxsource, treehouse, trello, trendmicro, tresorit, treyarch, trezor, tricentis, trilium, triller, trillertv, trimble, trino, tripadvisor, tripdotcom, trivago, trivy, trmnl, trove, trpc, truenas, trueup, trulia, trustedshops, trustpilot, tryhackme, tryitonline
+@docs traccar, tradingview, trae, traefikmesh, traefikproxy, trafficdotcv, trailforks, trainerroad, trakt, transifex, transmission, transportforireland, transportforlondon, travisci, traxsource, treehouse, trello, trendmicro, tresorit, treyarch, trezor, tricentis, trilium, triller, trillertv, trimble, trino, tripadvisor, tripdotcom, trivago, trivy, trmnl, trove, trpc, truenas, trueup, trulia, trustedshops, trustpilot, tryhackme, tryitonline
 @docs tsnode
 @docs tubi, tui, tumblr, turbo, turborepo, turbosquid, turkishairlines, turso, tuta, tuxedocomputers
 @docs tv4play, tvtime
@@ -2590,6 +2590,7 @@ allIcons =
         , ( "kirby", kirby )
         , ( "kit", kit )
         , ( "kitsu", kitsu )
+        , ( "kitty", kitty )
         , ( "kiwix", kiwix )
         , ( "klarna", klarna )
         , ( "kleinanzeigen", kleinanzeigen )
@@ -4087,6 +4088,7 @@ allIcons =
         , ( "trae", trae )
         , ( "traefikmesh", traefikmesh )
         , ( "traefikproxy", traefikproxy )
+        , ( "trafficdotcv", trafficdotcv )
         , ( "trailforks", trailforks )
         , ( "trainerroad", trainerroad )
         , ( "trakt", trakt )
@@ -27398,6 +27400,20 @@ kitsu =
         ]
 
 
+{-| Logo icon for “kitty”. Its default color is `#000000`.
+
+License: GPL-3.0-only.
+
+-}
+kitty : Icon
+kitty =
+    toIcon "kitty"
+        "#000000"
+        [ S.path [ Sa.d "M5.064 1.943c-.288.001-.51.06-.623.193-.474.527.345 2.716 1.32 3.93q-.075.297-.11.605c-1.21-.952-2.846-1.38-4.253-.895 1.602.207 2.986.71 4.243 1.557q.02.258.076.508C4.017 6.708 1.682 6.372 0 7.438c1.753-.274 3.392-.043 4.953.555-.27.012-.519.081-.736.197-1.412-.247-2.828-.012-3.451.908a8 8 0 0 1 2.88-.382q-.047.07-.085.146h-.08c-.713 0-1.319.526-1.319 1.186 0 .923.95 1.427 1.82 1.11.528.765 1.662.818 2.084 0 .633-.027 1.66-.134 1.82-1.11a1 1 0 0 0 .01-.184h3.297c-.13-.264.053-.422.845-.422.79.027.95.158.846.422h3.23a.6.6 0 0 0 .002.184c.158.976 1.186 1.083 1.819 1.11.422.818 1.556.765 2.084 0 .87.317 1.82-.187 1.82-1.11 0-.66-.95-1.186-1.318-1.186h-.08q-.038-.076-.083-.146a8 8 0 0 1 2.877.382c-.623-.92-2.04-1.155-3.45-.908a1.7 1.7 0 0 0-.738-.197c1.56-.598 3.2-.829 4.953-.555-1.653-1.048-3.94-.74-5.63.346q.05-.249.07-.504c1.235-.815 2.595-1.3 4.162-1.504-1.38-.477-2.98-.074-4.182.84a5 5 0 0 0-.106-.55c.923-1.214 1.715-3.43 1.24-3.93-.474-.501-2.638.106-3.956.923a7.9 7.9 0 0 0-3.587-.843c-1.345 0-2.585.316-3.614.843-.989-.613-2.467-1.123-3.334-1.117m4.47 3.78A1.7 1.7 0 0 1 11.22 7.41a1.7 1.7 0 0 1-1.688 1.687 1.7 1.7 0 0 1-1.69-1.687 1.7 1.7 0 0 1 1.69-1.688m4.957 0a1.7 1.7 0 0 1 1.688 1.688c0 .923-.738 1.687-1.688 1.687a1.7 1.7 0 0 1-1.687-1.687 1.7 1.7 0 0 1 1.687-1.688M9.53 6.776c-.195 0-.35.37-.35.844 0 .475.155.844.35.844s.35-.37.35-.844c0-.475-.156-.844-.35-.844m4.902 0c-.195 0-.35.37-.35.844 0 .475.155.844.35.844s.35-.37.35-.844c0-.475-.156-.844-.35-.844m-6.109 3.589c-.167.525-.57.883-.973 1.055-.388.166-.75.18-1.063.2a2 2 0 0 1-.4.367v9.342a.73.73 0 0 0 .73.729h10.767a.73.73 0 0 0 .73-.729v-9.342q-.22-.15-.398-.367c-.314-.018-.676-.034-1.065-.2a1.73 1.73 0 0 1-.972-1.055Zm-.249 2.273a.44.44 0 0 1 .276.117l2.736 2.734a.44.44 0 0 1 0 .62L8.35 18.844c-.413.413-1.033-.207-.62-.62l2.428-2.425-2.428-2.426a.438.438 0 0 1 .344-.736m4.31 5.459h3.869c.556.027.556.848 0 .875h-3.87c-.556-.027-.556-.848 0-.875" ]
+            []
+        ]
+
+
 {-| Logo icon for “Kiwix”. Its default color is `#000000`.
 
 License: CC-BY-SA-4.0.
@@ -49074,6 +49090,22 @@ traefikproxy =
     toIcon "Traefik Proxy"
         "#24A1C1"
         [ S.path [ Sa.d "M12 1.19c1.088 0 2.056.768 2.056 1.714 0 .947-.921 1.715-2.056 1.715-.13 0-.3-.022-.509-.064a.685.685 0 0 0-.475.076l-7.37 4.195a.344.344 0 0 0 .001.597l7.99 4.49c.208.116.461.116.669 0l8.034-4.468a.343.343 0 0 0 .003-.598l-2.507-1.424a.683.683 0 0 0-.67-.003l-2.647 1.468a.234.234 0 0 0-.119.18l-.001.025c0 .946-.921 1.714-2.056 1.714s-2.056-.768-2.056-1.714c0-.947.921-1.715 2.056-1.715.042 0 .09.002.145.007l.087.008.096.013a.685.685 0 0 0 .425-.08l3.913-2.173c.3-.166.662-.171.965-.017l.04.023 5.465 3.104c.686.39.693 1.368.03 1.773l-.037.021-3.656 2.033a.343.343 0 0 0 .007.604l3.62 1.906c.72.378.736 1.402.03 1.804l-10.995 6.272a1.03 1.03 0 0 1-1.019 0L.526 16.43a1.03 1.03 0 0 1 .034-1.806l3.66-1.911a.343.343 0 0 0 .01-.603L.524 10.029a1.03 1.03 0 0 1-.041-1.77l.036-.021L9.618 3.06a.688.688 0 0 0 .308-.369l.011-.036c.32-.952 1.046-1.466 2.063-1.466Zm5.076 12.63-4.492 2.586-.041.022c-.306.158-.671.152-.973-.018l-4.478-2.527a.682.682 0 0 0-.65-.01L3.86 15.224a.343.343 0 0 0-.012.602l7.887 4.515c.21.12.467.121.677 0l7.956-4.547a.343.343 0 0 0-.01-.602l-2.623-1.384a.683.683 0 0 0-.659.012z" ]
+            []
+        ]
+
+
+{-| Logo icon for “Traffic.cv”. Its default color is `#635BFF`.
+
+(No license information.)
+
+[Brand guidelines.](https://traffic.cv/terms-of-service)
+
+-}
+trafficdotcv : Icon
+trafficdotcv =
+    toIcon "Traffic.cv"
+        "#635BFF"
+        [ S.path [ Sa.d "M3.136 0A3.115 3.115 0 0 0 0 3.136v17.728A3.114 3.114 0 0 0 3.136 24h17.728A3.115 3.115 0 0 0 24 20.864V3.136A3.115 3.115 0 0 0 20.864 0Zm11.947 7.147 3.861.213a1.067 1.067 0 0 1 1.045 1.024l.214 3.861a1.067 1.067 0 0 1-1.067 1.152 1.067 1.067 0 0 1-1.11-1.024l-.106-1.322-3.67 3.882a1.067 1.067 0 0 1-1.493.107l-2.346-1.963-3.52 3.67v.042a1.557 1.557 0 0 1-1.579 1.579 1.557 1.557 0 0 1-1.557-1.579 1.557 1.557 0 0 1 1.578-1.557l4.203-4.416a1.067 1.067 0 0 1 1.493-.085l2.347 1.962 3.05-3.306-1.471-.043a1.067 1.067 0 0 1-1.003-1.152 1.067 1.067 0 0 1 1.13-1.045" ]
             []
         ]
 
